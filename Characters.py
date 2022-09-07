@@ -35,17 +35,80 @@ class Enemy:
                 self.damage = 15
                 self.armor = 0
                 self.dodge = 0.03
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
             elif class_enemy == 'Гоблин с копьем'
                 self.health = 200
                 self.damage = 20
                 self.armor = 1
                 self.dodge = 0.15
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
             elif class_enemy == 'Иссушенный труп'
                 self.health = 550
                 self.damage = 10
                 self.armor = 1
                 self.dodge = 0
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
         elif self.level == 2:
-            if class_enemy == 'Станствующий маг'
+            if class_enemy == 'Странствующий маг':
+                self.health = 400
+                self.damage = 40
+                self.armor = 5
+                self.dodge = 0.1
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
+            elif class_enemy == 'Страж лабиринта':
+                self.health = 600
+                self.damage = 25
+                self.armor = 10
+                self.dodge = 0
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
+            elif class_enemy == 'Душа грешника':
+                self.health = 350
+                self.damage = 35
+                self.armor = 0
+                self.dodge = 0.3
+                self.critical_damage = 2
+                self.chance_critical_damage = 0.2
+        elif self.level == 3:
+            if class_enemy == 'Тролль':
+                self.health = 700
+                self.damage = 30
+                self.armor = 15
+                self.dodge = 0.25
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
+            elif class_enemy == 'Демон лабиринта':
+                self.health = 650
+                self.damage = 60
+                self.armor = 15
+                self.dodge = 0.2
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
+            elif class_enemy == 'Огенный дракон':
+                self.health = 700
+                self.damage = 40
+                self.armor = 20
+                self.dodge = 0.1
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
+        elif self.level == 4:
+            if class_enemy == 'Хранитель лабиринта':
+                self.health = 1000
+                self.damage = 40
+                self.armor = 15
+                self.dodge = 0.18
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
+            elif class_enemy == 'Осколок леса':
+                self.health = 3000
+                self.damage = 0
+                self.armor = 0
+                self.dodge = 0
+                self.critical_damage = 0
+                self.chance_critical_damage = 0
 
 
