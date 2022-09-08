@@ -3,7 +3,7 @@ class Hero:
         self.inventory = {}
         self.name = name
         self.class_name = class_name
-        if self.class_name == "Волшебник":
+        if self.class_name == "Маг":
             self.health = 1500
             self.damage = 150
             self.armor = 7
@@ -37,14 +37,14 @@ class Enemy:
                 self.dodge = 0.03
                 self.critical_damage = 0
                 self.chance_critical_damage = 0
-            elif class_enemy == 'Гоблин с копьем'
+            elif class_enemy == 'Гоблин с копьем':
                 self.health = 200
                 self.damage = 20
                 self.armor = 1
                 self.dodge = 0.15
                 self.critical_damage = 0
                 self.chance_critical_damage = 0
-            elif class_enemy == 'Иссушенный труп'
+            elif class_enemy == 'Иссушенный труп':
                 self.health = 550
                 self.damage = 10
                 self.armor = 1
