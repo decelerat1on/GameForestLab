@@ -21,19 +21,9 @@ map = """
 ║бб║
 ╚══╝
 """
-def move_hero(direction):
-    mapclear = ''
-    cord = []
-    mapsplit = map.split('\n')
-    for cell in range(2,len(mapsplit)-1,2):
-        mapcell = mapsplit[cell].split('║')
-        if 'st' in mapcell:
-            cord.append(cell)
-        for cell in mapcell:
-            if cell != '' or cell != '         ':
-                pass
-        print(mapcell)
-def row(a,b,z,c,x):
+
+
+def row(a, b, z, c, x):  # создание строки карты
     map1 = ''
     for col in range((x * 2) + 1):
         if col == 0:
@@ -47,25 +37,140 @@ def row(a,b,z,c,x):
     return map1 + '\n'
 
 
-
-def create_map(x,y):
+def create_map(x, y):  # создание карты
     y = y * 2 + 1
     map1 = ''
     for row1 in range(y):
         if row1 == 0:
-            map1 += row('╔','═','╦','╗',x)
+            map1 += row('╔', '═', '╦', '╗', x)
         elif row1 % 2 == 1:
-            map1 += row('║',' ','║','║',x)
+            map1 += row('║', 'x', '║', '║', x)
         elif row1 - (y - 1) == 0:
-            map1 += row('╚','═','╩','╝',x)
+            map1 += row('╚', '═', '╩', '╝', x)
         else:
-            map1 += row('╠','═','╬','╣',x)
+            map1 += row('╠', '═', '╬', '╣', x)
     return map1
 
 
-print(create_map(4,5))
+print(create_map(8, 12))
 
-# mapsplit = map.split('\n')
-# print(mapsplit)
-# cell = mapsplit[2].split('║')
-# print(cell)
+maptest = '''
+╔═╦═╦═╦═╦═╦═╦═╦═╗
+║x║x║x║x║x║x║x║x║ 
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║x║x║x║H║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║x║x║x║1║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║x║x║x║1║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║3║1║1║1║з║з║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║x║x║2║x║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║з║з║1║2║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║x║x║x║2║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║3║2║2║2║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║з║x║x║x║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║б║x║x║x║x║x║x║
+╠═╬═╬═╬═╬═╬═╬═╬═╣
+║x║x║x║x║x║x║x║x║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+'''
+
+
+def findhero(map):  # ищем героя на карте
+    map = map.split('\n')
+    for splitmap in map:
+        if 'H' in splitmap:
+            y = map.index(splitmap)
+            split1 = list(splitmap)
+            x = split1.index('H')
+            return (x, y)
+
+
+def movehero(map, x, y, dir):  # движения героя
+    map = map.split('\n')
+    if dir == 'S':
+        row = list(map[y])
+        row[x] = ' '
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
+        y += 2
+        row = list(map[y])
+        row[x] = 'H'  # замена местоположения
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
+
+    elif dir == 'W':
+        row = list(map[y])
+        row[x] = ' '
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
+        y -= 2
+        row = list(map[y])
+        row[x] = 'H'
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
+
+    elif dir == 'A':
+        row = map[y]
+        newrow = list(row)
+        newrow[x] = ' '
+        x -= 2
+        newrow[x] = 'H'
+        temp = ''
+        for element in newrow:
+            temp += element
+        map[y] = temp
+    elif dir == 'D':
+        row = map[y]
+        newrow = list(row)
+        newrow[x] = ' '
+        x += 2
+        newrow[x] = 'H'
+        temp = ''
+        for element in newrow:
+            temp += element
+        map[y] = temp
+    temp = ''
+    for element in map:
+        temp += element + '\n'
+    return temp,x,y
+
+
+
+
+temp = ''
+for element in map:
+    temp += element
+
+# взять строку в которой находится герой
+# превратить строку в список
+# заменить героя на пустоту
+# поставить героя в нужное место
+# сохранить изменения в карте
+
+
+
+
+
+print(maptest)
+x, y = findhero(maptest)
+while True:
+    wheremove = input('Введите движение: ').upper()
+    maptest,x,y = movehero(maptest, x, y, wheremove)
+    print(maptest)
+
