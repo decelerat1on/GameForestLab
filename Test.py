@@ -92,7 +92,7 @@ def findhero(map):  # ищем героя на карте
             x = split1.index('H')
             return (x, y)
 
-
+#TODO Оптимизация + найти ошибку в строках ( движение W )
 def movehero(map, x, y, dir):  # движения героя
     map = map.split('\n')
     if dir == 'S':
@@ -104,8 +104,13 @@ def movehero(map, x, y, dir):  # движения героя
         map[y] = newrow
         y += 2
         row = list(map[y])
-        row[x] = 'H'  # замена местоположения
-        newrow = ''
+        if row[x] != 'x':
+            row[x] = 'H'  # замена местоположения
+            newrow = ''
+        else:
+            y -= 2
+            row[x] = 'H'
+
         for element in row:
             newrow += element
         map[y] = newrow
@@ -119,8 +124,12 @@ def movehero(map, x, y, dir):  # движения героя
         map[y] = newrow
         y -= 2
         row = list(map[y])
-        row[x] = 'H'
-        newrow = ''
+        if row[x] != 'x':
+            row[x] = 'H'
+            newrow = ''
+        else:
+            y += 2
+            row[x] = 'H'
         for element in row:
             newrow += element
         map[y] = newrow
@@ -150,12 +159,6 @@ def movehero(map, x, y, dir):  # движения героя
         temp += element + '\n'
     return temp,x,y
 
-
-
-
-temp = ''
-for element in map:
-    temp += element
 
 # взять строку в которой находится герой
 # превратить строку в список
