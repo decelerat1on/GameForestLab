@@ -92,7 +92,7 @@ def findhero(map):  # ищем героя на карте
             x = split1.index('H')
             return (x, y)
 
-#TODO Оптимизация + найти ошибку в строках ( движение W )
+#TODO Оптимизация + найти ошибку в строках ( движение W  )
 def movehero(map, x, y, dir):  # движения героя
     map = map.split('\n')
     if dir == 'S':
