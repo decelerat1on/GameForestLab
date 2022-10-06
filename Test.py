@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 map = """
          ╔══╗
          ║st║
@@ -92,9 +93,10 @@ def findhero(map):  # ищем героя на карте
             x = split1.index('H')
             return (x, y)
 
-#TODO Оптимизация + найти ошибку в строках ( движение W  )
 def movehero(map, x, y, dir):  # движения героя
     map = map.split('\n')
+
+
     if dir == 'S':
         row = list(map[y])
         row[x] = ' '
@@ -111,9 +113,11 @@ def movehero(map, x, y, dir):  # движения героя
             y -= 2
             row[x] = 'H'
 
+        newrow = ''
         for element in row:
             newrow += element
         map[y] = newrow
+
 
     elif dir == 'W':
         row = list(map[y])
@@ -130,33 +134,62 @@ def movehero(map, x, y, dir):  # движения героя
         else:
             y += 2
             row[x] = 'H'
+
+        newrow = ''
         for element in row:
             newrow += element
         map[y] = newrow
 
+
     elif dir == 'A':
-        row = map[y]
-        newrow = list(row)
-        newrow[x] = ' '
+        row = list(map[y])
+        row[x] = ' '
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
         x -= 2
-        newrow[x] = 'H'
-        temp = ''
-        for element in newrow:
-            temp += element
-        map[y] = temp
+        row = list(map[y])
+        if row[x] != 'x':
+            row[x] = 'H'
+            newrow = ''
+        else:
+            x += 2
+            row[x] = 'H'
+
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
+
+
     elif dir == 'D':
-        row = map[y]
-        newrow = list(row)
-        newrow[x] = ' '
+        row = list(map[y])
+        row[x] = ' '
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
         x += 2
-        newrow[x] = 'H'
-        temp = ''
-        for element in newrow:
-            temp += element
-        map[y] = temp
+        row = list(map[y])
+        if row[x] != 'x':
+            row[x] = 'H'
+            newrow = ''
+        else:
+            x -= 2
+            row[x] = 'H'
+
+        newrow = ''
+        for element in row:
+            newrow += element
+        map[y] = newrow
+
     temp = ''
     for element in map:
-        temp += element + '\n'
+        if element == '╚═╩═╩═╩═╩═╩═╩═╩═╝':
+            temp += element
+        else:
+            temp += element + '\n'
     return temp,x,y
 
 
