@@ -22,7 +22,7 @@ map = """
 ║бб║
 ╚══╝
 """
-
+#TODO область видимости почитать
 
 def row(a, b, z, c, x):  # создание строки карты
     map1 = ''
@@ -93,31 +93,23 @@ def findhero(map):  # ищем героя на карте
             x = split1.index('H')
             return (x, y)
 
+
 def movehero(map, x, y, dir):  # движения героя
     map = map.split('\n')
-
-
+    event = ''
     if dir == 'S':
-        row = list(map[y])
-        row[x] = ' '
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
-        y += 2
-        row = list(map[y])
-        if row[x] != 'x':
-            row[x] = 'H'  # замена местоположения
-            newrow = ''
-        else:
-            y -= 2
+        if map[y+2][x] != 'x':
+            map[y] = map[y].replace('H',' ')
+            y += 2
+            event = map[y][x]
+            row = list(map[y])
             row[x] = 'H'
+            map[y] = ''.join(row)
 
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
 
+
+
+#TODO Рефактор остальных движений + заполнить event
 
     elif dir == 'W':
         row = list(map[y])
@@ -135,11 +127,7 @@ def movehero(map, x, y, dir):  # движения героя
             y += 2
             row[x] = 'H'
 
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
-
+        map[y] = ''.join(row)
 
     elif dir == 'A':
         row = list(map[y])
@@ -157,10 +145,7 @@ def movehero(map, x, y, dir):  # движения героя
             x += 2
             row[x] = 'H'
 
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
+        map[y] = ''.join(row)
 
 
     elif dir == 'D':
@@ -179,10 +164,7 @@ def movehero(map, x, y, dir):  # движения героя
             x -= 2
             row[x] = 'H'
 
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
+        map[y] = ''.join(row)
 
     temp = ''
     for element in map:
@@ -190,7 +172,8 @@ def movehero(map, x, y, dir):  # движения героя
             temp += element
         else:
             temp += element + '\n'
-    return temp,x,y
+    return temp,x,y,event
+
 
 
 # взять строку в которой находится герой
@@ -207,6 +190,6 @@ print(maptest)
 x, y = findhero(maptest)
 while True:
     wheremove = input('Введите движение: ').upper()
-    maptest,x,y = movehero(maptest, x, y, wheremove)
+    maptest,x,y,event = movehero(maptest, x, y, wheremove)
     print(maptest)
 
