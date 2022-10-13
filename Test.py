@@ -107,64 +107,34 @@ def movehero(map, x, y, dir):  # движения героя
             map[y] = ''.join(row)
 
 
-
-
-#TODO Рефактор остальных движений + заполнить event
-
     elif dir == 'W':
-        row = list(map[y])
-        row[x] = ' '
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
-        y -= 2
-        row = list(map[y])
-        if row[x] != 'x':
+        if map[y - 2][x] != 'x':
+            map[y] = map[y].replace('H', ' ')
+            y -= 2
+            event = map[y][x]
+            row = list(map[y])
             row[x] = 'H'
-            newrow = ''
-        else:
-            y += 2
-            row[x] = 'H'
+            map[y] = ''.join(row)
 
-        map[y] = ''.join(row)
 
     elif dir == 'A':
-        row = list(map[y])
-        row[x] = ' '
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
-        x -= 2
-        row = list(map[y])
-        if row[x] != 'x':
+        if map[y][x - 2] != 'x':
+            map[y] = map[y].replace('H', ' ')
+            x -= 2
+            event = map[y][x]
+            row = list(map[y])
             row[x] = 'H'
-            newrow = ''
-        else:
-            x += 2
-            row[x] = 'H'
-
-        map[y] = ''.join(row)
+            map[y] = ''.join(row)
 
 
     elif dir == 'D':
-        row = list(map[y])
-        row[x] = ' '
-        newrow = ''
-        for element in row:
-            newrow += element
-        map[y] = newrow
-        x += 2
-        row = list(map[y])
-        if row[x] != 'x':
+        if map[y][x + 2] != 'x':
+            map[y] = map[y].replace('H', ' ')
+            x += 2
+            event = map[y][x]
+            row = list(map[y])
             row[x] = 'H'
-            newrow = ''
-        else:
-            x -= 2
-            row[x] = 'H'
-
-        map[y] = ''.join(row)
+            map[y] = ''.join(row)
 
     temp = ''
     for element in map:

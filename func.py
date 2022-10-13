@@ -62,5 +62,3 @@ while True:
     dir = input("Направление: ").lower()
     map, x, y, event = move_hero(map, dir, x, y)
     print(map)
-
-#TODO Запуск в дебаге, убрать баг с пустой строкой, сократить код с примера
