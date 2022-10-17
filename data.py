@@ -91,31 +91,28 @@ lists_enemy = [[{'name':'Волчья стая',
                  'critical_damage': 0,
                  'chance_critical_damage': 0
                  }]]
-
-lists_heroes = [[{'name':'Маг',
+#TODO Посчитать броню для врагов и героев
+lists_heroes = [{'name':'Маг',
                  'health': 1500,
                  'damage': 150,
                  'armor': 7,
                  'dodge': 0.13,
                  'critical_damage': 3,
-                 'chance_critical_damage': 0.1}],
-
-                [{'name':'Лучник',
+                 'chance_critical_damage': 0.1},
+                {'name':'Лучник',
                  'health': 2000,
                  'damage': 100,
                  'armor': 9,
                  'dodge': 0.20,
                  'critical_damage': 2,
-                 'chance_critical_damage': 0.08}],
-
-                [{'name': 'Воин',
+                 'chance_critical_damage': 0.08},
+                {'name': 'Воин',
                  'health': 2500,
                  'damage': 100,
                  'armor': 12,
                  'dodge': 0.15,
                  'critical_damage': 2,
                  'chance_critical_damage': 0.05}]
-                ]
 
 list_of_mysterys = [
     {'50':'На двух руках - 10 пальцев. Сколько пальцев на 10 руках?'},
@@ -171,7 +168,7 @@ maptest = '''
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║з║x║x║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║б║x║x║x║x║x║x║
+║x║Б║x║x║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║x║x║x║x║x║
 ╚═╩═╩═╩═╩═╩═╩═╩═╝
