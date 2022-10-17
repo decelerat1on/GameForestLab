@@ -3,27 +3,27 @@ class Hero:
         self.inventory = {}
         self.name = name
         self.class_name = class_name
-        if self.class_name == "Маг":
-            self.health = 1500
-            self.damage = 150
-            self.armor = 7
-            self.dodge = 0.13
-            self.critical_damage = 3
-            self.chance_critical_damage = 0.1
-        elif class_name == "Лучник":
-            self.health = 2000
-            self.damage = 100
-            self.armor = 9
-            self.dodge = 0.20
-            self.critical_damage = 2
-            self.chance_critical_damage = 0.08
-        elif class_name == "Воин":
-            self.health = 2500
-            self.damage = 100
-            self.armor = 12
-            self.dodge = 0.15
-            self.critical_damage = 2
-            self.chance_critical_damage = 0.05
+        # if self.class_name == "Маг":
+        #     self.health = 1500
+        #     self.damage = 150
+        #     self.armor = 7
+        #     self.dodge = 0.13
+        #     self.critical_damage = 3
+        #     self.chance_critical_damage = 0.1
+        # elif class_name == "Лучник":
+        #     self.health = 2000
+        #     self.damage = 100
+        #     self.armor = 9
+        #     self.dodge = 0.20
+        #     self.critical_damage = 2
+        #     self.chance_critical_damage = 0.08
+        # elif class_name == "Воин":
+        #     self.health = 2500
+        #     self.damage = 100
+        #     self.armor = 12
+        #     self.dodge = 0.15
+        #     self.critical_damage = 2
+        #     self.chance_critical_damage = 0.05
     def attack(self, target):
         target.health -= self.damage
 class Enemy:
