@@ -18,8 +18,7 @@ print('Воин - Высокий уровень здоровья и брони, 
 print('Умения: Удар топором - 250 урона и +10 брони в бою / Увеличивает урон на 100. ')
 
 hero = create_hero(lists_heroes)
-
-
+#TODO 1810
 print(map)
 x, y = findhero(map)
 while True:
