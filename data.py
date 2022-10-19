@@ -1,18 +1,15 @@
-#TODO Дописать лист врагов ( убрать дубликаты )
-#TODO Создать словарь с героями по примеру врагов
-#TODO Перенести данные в дату
-
+# Список с врагами лабиринта и их характеристиками
 lists_enemy = [[{'name':'Волчья стая',
-                'health': 250,
-                'damage': 15,
-                'armor': 0,
-                'dodge': 0.03,
-                'critical_damage': 0,
-                'chance_critical_damage': 0},
+                 'health': 250,
+                 'damage': 15,
+                 'armor': 50,
+                 'dodge': 0.03,
+                 'critical_damage': 0,
+                 'chance_critical_damage': 0},
                 {'name': 'Гоблин с копьем',
                  'health': 250,
                  'damage': 15,
-                 'armor': 0,
+                 'armor': 50,
                  'dodge': 0.03,
                  'critical_damage': 0,
                  'chance_critical_damage': 0
@@ -29,7 +26,7 @@ lists_enemy = [[{'name':'Волчья стая',
                [{'name':'Странствующий маг',
                  'health': 400,
                  'damage': 40,
-                 'armor': 5,
+                 'armor': 100,
                  'dodge': 0.1,
                  'critical_damage': 0,
                  'chance_critical_damage': 0
@@ -37,14 +34,14 @@ lists_enemy = [[{'name':'Волчья стая',
                 {'name':'Страж лабиринта',
                  'health': 600,
                  'damage': 25,
-                 'armor': 10,
+                 'armor': 150,
                  'dodge': 0,
                  'critical_damage': 0,
                  'chance_critical_damage': 0},
                 {'name':'Душа грешника',
                  'health': 350,
                  'damage': 35,
-                 'armor': 0,
+                 'armor': 100,
                  'dodge': 0.3,
                  'critical_damage': 2,
                  'chance_critical_damage': 0.2
@@ -53,7 +50,7 @@ lists_enemy = [[{'name':'Волчья стая',
                 [{'name':'Тролль',
                   'health': 700,
                   'damage': 30,
-                  'armor': 15,
+                  'armor': 150,
                   'dodge': 0.25,
                   'critical_damage': 0,
                   'chance_critical_damage': 0
@@ -61,7 +58,7 @@ lists_enemy = [[{'name':'Волчья стая',
                 {'name':'Демон лабиринта',
                  'health': 650,
                  'damage': 60,
-                 'armor': 15,
+                 'armor': 200,
                  'dodge': 0.2,
                  'critical_damage': 0,
                  'chance_critical_damage': 0
@@ -69,7 +66,7 @@ lists_enemy = [[{'name':'Волчья стая',
                 {'name':'Огенный дракон',
                  'health': 700,
                  'damage': 40,
-                 'armor': 20,
+                 'armor': 400,
                  'dodge': 0.1,
                  'critical_damage': 0,
                  'chance_critical_damage': 0
@@ -78,7 +75,7 @@ lists_enemy = [[{'name':'Волчья стая',
                 [{'name':'Хранитель лабиринта',
                   'health': 1000,
                   'damage': 40,
-                  'armor': 15,
+                  'armor': 500,
                   'dodge': 0.18,
                   'critical_damage': 0,
                   'chance_critical_damage': 0
@@ -91,29 +88,29 @@ lists_enemy = [[{'name':'Волчья стая',
                  'critical_damage': 0,
                  'chance_critical_damage': 0
                  }]]
-#TODO Посчитать броню для врагов и героев
+# Список с героями и их характеристиками
 lists_heroes = [{'name':'Маг',
-                 'health': 1500,
+                 'health': 1300,
                  'damage': 150,
-                 'armor': 7,
+                 'armor': 300,
                  'dodge': 0.13,
                  'critical_damage': 3,
                  'chance_critical_damage': 0.1},
                 {'name':'Лучник',
-                 'health': 2000,
+                 'health': 1600,
                  'damage': 100,
-                 'armor': 9,
+                 'armor': 400,
                  'dodge': 0.20,
                  'critical_damage': 2,
                  'chance_critical_damage': 0.08},
                 {'name': 'Воин',
-                 'health': 2500,
+                 'health': 2000,
                  'damage': 100,
-                 'armor': 12,
+                 'armor': 500,
                  'dodge': 0.15,
                  'critical_damage': 2,
                  'chance_critical_damage': 0.05}]
-
+# Список с загадками
 list_of_mysterys = [
     {'50':'На двух руках - 10 пальцев. Сколько пальцев на 10 руках?'},
     {'Корень':'Он слово или часть его. Он есть у зуба и у ели.Нет у добра его, но, говорят,у зла бывает?'},
@@ -121,18 +118,20 @@ list_of_mysterys = [
     {'Огонь':'Это чудище сжирает Всё, что встретит на пути.Но, насытившись едою, Умирает вместе с ней. Что это?'},
     {'Одуванчик':'Кто может дать потомство лишь однажды? Кто может дать потомство, став седым?'}
 ]
-
+# Список с артефактами
 list_of_artefacts1 = [
     ['Родниковая вода', 250],
     ['Красный талисман', 0.05],
     ['Оберег медведя', 3],
     ['Золотая кисть', 999],
-    ['Петля времени', 9999]
+    ['Петля времени', 9999],
+    ['Стальная пластина', 200]
 ]
 list_of_artefacts2 = [
     ['Сердце великана', 999],
     ['Песочные часы', 999],
-    ['Запечатанный ветер', 999]
+    ['Запечатанный ветер', 999],
+    ['Кольчуга', 500]
 ]
 list_of_artefacts3 = [
     ['Мистический ларец', 999],
@@ -145,7 +144,7 @@ list_of_artefacts4 = [
     ['Крепкое зелье здоровья', 999],
     ['Кукла некроманта', 999]
 ]
-
+# Карта лабиринта
 maptest = '''
 ╔═╦═╦═╦═╦═╦═╦═╦═╗
 ║x║x║x║x║x║x║x║x║ 
