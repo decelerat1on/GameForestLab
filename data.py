@@ -95,21 +95,28 @@ lists_heroes = [{'name':'Маг',
                  'armor': 300,
                  'dodge': 0.13,
                  'critical_damage': 3,
-                 'chance_critical_damage': 0.1},
+                 'chance_critical_damage': 0.1,
+                 'skill1': 'Превратить врага в безобидную овечку',
+                 'skill2': 'Огненная волна - 300 урона врагу'},
                 {'name':'Лучник',
                  'health': 1600,
                  'damage': 100,
                  'armor': 400,
                  'dodge': 0.20,
                  'critical_damage': 2,
-                 'chance_critical_damage': 0.08},
+                 'chance_critical_damage': 0.08,
+                 'skill1': 'Повышает шанс критического урона на 20%.',
+                 'skill2': 'Восстанавливает 150 здоровья.'},
                 {'name': 'Воин',
                  'health': 2000,
                  'damage': 100,
                  'armor': 500,
                  'dodge': 0.15,
                  'critical_damage': 2,
-                 'chance_critical_damage': 0.05}]
+                 'chance_critical_damage': 0.05,
+                 'skill1': 'Удар топором - 250 урона и +10 брони в бою',
+                 'skill2': 'Увеличивает урон на 100.'
+                 }]
 # Список с загадками
 list_of_mysterys = [
     {'50':'На двух руках - 10 пальцев. Сколько пальцев на 10 руках?'},
@@ -119,6 +126,7 @@ list_of_mysterys = [
     {'Одуванчик':'Кто может дать потомство лишь однажды? Кто может дать потомство, став седым?'}
 ]
 # Список с артефактами
+#TODO Передалать в словарь
 list_of_artefacts1 = [
     ['Родниковая вода', 250],
     ['Красный талисман', 0.05],

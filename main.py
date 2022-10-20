@@ -27,7 +27,7 @@ while True:
     print(map)
     if event in fight_events:
         enemy = create_enemy(event,lists_enemy)
-        event_fight(hero,ememy)
+        event_fight(hero,enemy,event)
 
 
 
