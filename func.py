@@ -14,7 +14,6 @@ from Characters import Hero
 #     else:
 #         print('Неправильно! Попробуй еще')
 
-
 def create_hero(lists_heroes):
     classes = lists_heroes
     choose_name = input('Введите имя героя: ')
