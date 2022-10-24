@@ -1,5 +1,5 @@
 from Characters import *
-import random
+import os
 from data import *
 
 
@@ -38,7 +38,6 @@ def choise_action(hero,enemy):
         choise = input('[1] - Посмотреть инвентарь\n[2] - Использовать умение\n[3] - Ударить\nВведите действие: ')
         #TODO Прописать атаку
         #TODO Написать проверку инвентаря
-        #TODO Очистка консоли после действий
         #TODO Checkinventory: Список словарей в классе
         if choise == '1':
             hero.check_inventory()
@@ -55,13 +54,17 @@ def event_fight(hero, enemy,event):
      if whoseattack():
          while hero.health > 0 and enemy.health > 0:
              choise_action(hero,enemy)
+             os.system('cls')
              enemy.attack(hero)
-             print(hero.health, enemy.health)
+             print(f'У героя осталось:\n{hero.health} здоровья\n{hero.armor} брони')
+             print(f'У врага осталось:\n{enemy.health} здоровья\n{enemy.armor} брони')
      else:
          while hero.health > 0 and enemy.health > 0:
              enemy.attack(hero)
              choise_action(hero,enemy)
-             print(hero.health, enemy.health)
+             os.system('cls')
+             print(f'У героя осталось:\n{hero.health} здоровья\n{hero.armor} брони')
+             print(f'У врага осталось:\n{enemy.health} здоровья\n{enemy.armor} брони')
      if hero.health > 0:
          print('Победил герой')
          return True
