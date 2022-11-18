@@ -10,8 +10,19 @@ class Hero:
         self.critical_damage = data_hero['critical_damage']
         self.chance_critical_damage = data_hero['chance_critical_damage']
         self.skill_colldown = [0,0]
-        self.skill1 = data_hero['skill1']
-        self.skill2 = data_hero['skill2']
+        self.skills = [data_hero['skill1'], data_hero['skill2']]
+    def use_skills(self, target):
+        for number, skill in enumerate(self.skills, 1):
+            print(f'[{number}] {skill["name"]}')
+        question = input('Выберите умение: ')
+        try:
+            skill = self.skills[int(question) - 1]
+            if skill['1hit'] == True:
+                return False
+            if skill['damage'] != None:
+                #TODO Не забыть про чистый урон. Дописать скиллы и награду.
+                if target.armor < 0:
+
 
     def attack(self, target):
         dodge = random.uniform(0,1)

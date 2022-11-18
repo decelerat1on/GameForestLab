@@ -36,9 +36,10 @@ def create_enemy(enemy_level,lists_enemy):
 
 def choise_action(hero,enemy):
         choise = input('[1] - Посмотреть инвентарь\n[2] - Использовать умение\n[3] - Ударить\nВведите действие: ')
-        #TODO Прописать атаку
+        #TODO Расписать красиво текст атаки ( Character attack 15min )
         #TODO Написать проверку инвентаря
         #TODO Checkinventory: Список словарей в классе
+        #TODO Прописать награду за убийство врага ( артефакт )
         if choise == '1':
             hero.check_inventory()
         elif choise == '2':
@@ -46,7 +47,7 @@ def choise_action(hero,enemy):
         elif choise == '3':
             hero.attack(enemy)
 
-def event_fight(hero, enemy,event):
+def event_fight(hero, enemy, event):
 
 
      print(f'Ваш враг: {enemy.class_enemy} {event} уровня')
