@@ -127,31 +127,116 @@ list_of_mysterys = [
 ]
 # Список с артефактами
 #TODO Передалать в словарь
-list_of_artefacts1 = [
-    ['Родниковая вода', 250],
-    ['Красный талисман', 0.05],
-    ['Оберег медведя', 3],
-    ['Золотая кисть', 999],
-    ['Петля времени', 9999],
-    ['Стальная пластина', 200]
-]
-list_of_artefacts2 = [
-    ['Сердце великана', 999],
-    ['Песочные часы', 999],
-    ['Запечатанный ветер', 999],
-    ['Кольчуга', 500]
-]
-list_of_artefacts3 = [
-    ['Мистический ларец', 999],
-    ['Джокер', 999],
-    ['Болотная пиявка', 999],
-    ['Улей', 999]
-]
-list_of_artefacts4 = [
-    ['Сундук смерти', 999],
-    ['Крепкое зелье здоровья', 999],
-    ['Кукла некроманта', 999]
-]
+list_of_artefacts = [[{'name': 'Родниковая вода',
+                       'health': 250,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                       {'name': 'Красный талисман',
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': 5},
+                       {'name': 'Оберег медведя',
+                       'health': None,
+                       'damage': None,
+                       'armor': 3,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                       {'name': 'Золотая кисть', #TODO Одна атака с двойным уроном
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                       {'name': 'Петля времени', #TODO Откат последней атаки по герою
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None}],
+                     [{'name': 'Браслет короля ', #TODO Атаки без промахов
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                       {'name': 'Песочные часы', #TODO Должны восстанавливать все colldown's
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                      {'name': 'Запечатанный ветер', #TODO +5 к доджу, но -100 к health
+                       'health': -100,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': 5,
+                       'critical_damage': None,
+                       'chance_critical_damage': None}],
+                     [{'name': 'Мистический ларец', #TODO 2 рандомных артефакта 1 уровня
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                      {'name': 'Джокер', #TODO Выдаёт новое умение: Бросок карты - 250 чистого урона сквозь уклонение и броню с кд в 3 клетки
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                      {'name': 'Болотная пиявка', #TODO Вампиризм + 10%
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                      {'name': 'Глаз бога', #TODO Позволяет посмотреть на 2 клетки вперед
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None}],
+                     [{'name': 'Сундук смерти', #TODO Выдаёт 1 артефакт 1 уровня, 1 артефакт 2 уровня, 1 артефакт 3 уровня ИЛИ убивает героя
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                      {'name': 'Зелье здоровья', #TODO Восстанавливает 50 проц здоровья
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None},
+                      {'name': 'Кукла некроманта', #TODO Позволяет сменить персонажа с восстановлением
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None}]]
+
+
+
+
+
 # Карта лабиринта
 maptest = '''
 ╔═╦═╦═╦═╦═╦═╦═╦═╗
