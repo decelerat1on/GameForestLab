@@ -88,6 +88,7 @@ lists_enemy = [[{'name':'Волчья стая',
                  'critical_damage': 0,
                  'chance_critical_damage': 0
                  }]]
+
 # Список с героями и их характеристиками
 lists_heroes = [{'name':'Маг',
                  'health': 1300,
