@@ -133,6 +133,7 @@ lists_heroes = [{'name':'Маг',
                             'armor': None,
                             'plus_damage': None}},
 
+
                 {'name': 'Воин',
                  'health': 2000,
                  'damage': 100,
