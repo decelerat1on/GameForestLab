@@ -25,6 +25,7 @@ while True:
     map,x,y,event = movehero(map, x, y, wheremove)
     os.system('cls')
     print(map)
+    print('_' * 50)
     if event in fight_events:
         enemy = create_enemy(event,lists_enemy)
         event_fight(hero,enemy,event)
