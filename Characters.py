@@ -54,8 +54,8 @@ class Hero:
 
     def check_inventory(self):
         print('В вашем инвентаре:')
-        for number, inve in enumerate(self.skills, 1):
-            print(f'[{number}] {skill["name"]}')
+        for number, item in enumerate(self.inventory, 1):
+            print(f'[{number}] {item["name"]}')
 
 class Enemy:
     def __init__(self, enemy_data):
@@ -92,7 +92,6 @@ class Enemy:
                     print('Урон нанесён по здоровью.')
         else:
             print(f'{target.name} удалось уклониться')
-
 
 
 
