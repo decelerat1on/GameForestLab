@@ -45,8 +45,8 @@ def choise_action(hero,enemy):
         choise = input('[1] - Посмотреть инвентарь\n[2] - Использовать умение\n[3] - Ударить\nВведите действие: ')
         os.system('cls')
         #TODO Написать проверку инвентаря
-        #TODO Checkinventory: Список словарей в классе
         #TODO Прописать награду за убийство врага ( артефакт )
+        #TODO Разобрать то, что есть и чего не хватает ( Выписать )
         if choise == '1':
             hero.check_inventory()
         elif choise == '2':
@@ -85,6 +85,7 @@ def event_fight(hero, enemy, event):
      if hero.health > 0:
          os.system('cls')
          print('Победил герой')
+         hero.no_miss = False
          return True
      else:
          os.system('cls')
