@@ -86,6 +86,9 @@ def event_fight(hero, enemy, event):
          os.system('cls')
          print('Победил герой')
          hero.no_miss = False
+         treasure = random.choice(data.list_of_artefacts[int(event)-1])
+#TODO Разбор всего  и добавление предмета
+         print(f'В награду герой получает: {treasure["name"]}\n{treasure["description"]}')
          return True
      else:
          os.system('cls')
