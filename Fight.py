@@ -44,9 +44,6 @@ def choise_action(hero,enemy):
         print('_' * 50)
         choise = input('[1] - Посмотреть инвентарь\n[2] - Использовать умение\n[3] - Ударить\nВведите действие: ')
         os.system('cls')
-        #TODO Написать проверку инвентаря
-        #TODO Прописать награду за убийство врага ( артефакт )
-        #TODO Разобрать то, что есть и чего не хватает ( Выписать )
         if choise == '1':
             hero.check_inventory()
         elif choise == '2':
@@ -89,6 +86,7 @@ def event_fight(hero, enemy, event):
          treasure = random.choice(data.list_of_artefacts[int(event)-1])
 #TODO Разбор всего  и добавление предмета
          print(f'В награду герой получает: {treasure["name"]}\n{treasure["description"]}')
+         hero.inventory.append(treasure)
          return True
      else:
          os.system('cls')

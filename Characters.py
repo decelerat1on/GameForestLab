@@ -60,28 +60,38 @@ class Hero:
                         if item['health'] != None:
                             if isinstance(item['health'], str):
                                 self.health += self.maxhealth * (int(item['health']) / 100)
+                                print(item['short_desc'])
                             else:
                                 self.health += item['health']
+                                print(item['short_desc'])
                         if item['damage'] != None:
                             self.damage += item['damage']
+                            print(item['short_desc'])
                         if item['armor'] != None:
                             self.armor += item['armor']
+                            print(item['short_desc'])
                         if item['dodge'] != None:
                             self.dodge += item['dodge']
+                            print(item['short_desc'])
                         if item['critical_damage'] != None:
                             self.critical_damage += item['critical_damage']
+                            print(item['short_desc'])
                         if item['chance_critical_damage'] != None:
                             self.chance_critical_damage += item['chance_critical_damage']
+                            print(item['short_desc'])
                         if item['add_skill'] == True:
                             self.skills.append(item['skill'])
                             self.skill_colldown.append(0)
+                            print(item['short_desc'])
                         if item['add_artefacts'] == True:
                             if item['health'] == -99999:
                                 randomchest = random.choice([0, 1])
                                 if randomchest == 0:
                                     self.health -= 99999
+                                    print(item['short_desc'])
                                 else:
                                     self.inventory.append(random.choice(data.list_of_artefacts[0]))
+                                    print(item['short_desc'])
                             else:
                                  for i in range(item['add_artefact_count']):
                                     self.inventory.append(random.choice(data.list_of_artefacts[0]))
