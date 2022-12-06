@@ -17,15 +17,38 @@ class Hero:
         self.inventory = []
         self.no_miss = False
         self.vampir = [0, False]
+        self.last_damage = 0
     def use_skills(self, target):
-        for number, skill in enumerate(self.skills, 1):
-            print(f'[{number}] {skill["name"]}')
-        question = input('Выберите умение: ')
- #        try:
-#            skill = self.skills[int(question) - 1]
-#            if skill['1hit'] == True:
-#                return False
- #           if skill['damage'] != None:
+        while True:
+            print(f'[0] Если хотите выйти из списка умений')
+            for number, skill in enumerate(self.skills, 1): #Показываем скиллы
+                print(f'[{number}] {skill["name"]}') #Показываем скиллы
+            question = input('Выберите умение: ')
+            if question == '0':
+                break
+            if question.isdigit():
+                question = int(question) - 1
+                if question in range(len(self.skills)):
+                    skill = self.skills[question]
+                    if skill['1hit'] == True:
+                        enemy.health -= 99999:
+                    #TODO Продолжить пременение скиллов + вопросы по коду
+
+
+
+                else:
+                    print('Вы ввели неверное число.')
+            else:
+                print('Вы ввели неверное число.')
+
+
+
+
+
+
+
+
+
                 #TODO Не забыть про чистый урон. Дописать скиллы и награду.
 
 
@@ -35,8 +58,6 @@ class Hero:
         if self.no_miss == True:
             self.crit_hp_armor_choice(target)
         elif target.dodge < dodge:
-            target_dodge_int = round(target.dodge * 100)
-            print(f'{target.class_enemy} не уклонился с шансом {target_dodge_int}%')
             self.crit_hp_armor_choice(target)
         else:
             print(f'{target.class_enemy} удалось уклониться')
@@ -103,6 +124,9 @@ class Hero:
                                 self.skill_colldown.append(0)
                         if 'вампиризм' in item['short_desc']:
                             self.vampir = [10, True]
+                        if 'Петля' in item['name']:
+                            self.health += self.last_damage
+                            print(f'Вы восстановили {self.last_damage} ЗДР')
 
                         item['count'] -= 1
                         if item['count'] <= 0:
@@ -115,6 +139,7 @@ class Hero:
                 print('Вы ввели неверное значение. Введите номер предмета.')
             os.system('cls')
 
+
     def crit_hp_armor_choice(self, target):
         chance_critical = random.uniform(0, 1)
         if self.chance_critical_damage > chance_critical:
@@ -122,18 +147,18 @@ class Hero:
             print(f'У {self.name} прошел критический урон. Он составляет {damage}')
             if target.armor > 0:
                 target.armor -= damage
-                print('Урон нанесён по броне.')
+                print(f' {damage} урона нанесено по броне.')
             else:
                 target.health -= damage
-                print('Урон нанесён по здоровью.')
+                print(f' {damage} урона нанесено по здоровью.')
         else:
             damage = self.damage
             if target.armor > 0:
                 target.armor -= damage
-                print('Урон нанесён по броне.')
+                print(f' {damage} урона нанесено по броне.')
             else:
                 target.health -= damage
-                print('Урон нанесён по здоровью.')
+                print(f' {damage} урона нанесено по здоровью.')
 
     def add_item(self, item):
         for item_inventory in self.inventory:
@@ -150,30 +175,30 @@ class Enemy:
         self.dodge = enemy_data['dodge']
         self.critical_damage = enemy_data['critical_damage']
         self.chance_critical_damage = enemy_data['chance_critical_damage']
+        self.kill_status = False
 
     def attack(self, target):
         dodge = random.uniform(0,1)
         if target.dodge < dodge:
-            target_dodge_int = round(target.dodge * 100)
-            print(f'{target.name} не уклонился с шансом {target_dodge_int}%')
             chance_critical = random.uniform(0,1)
             if self.chance_critical_damage > chance_critical:
                 damage = self.damage * self.critical_damage
                 print(f'У {self.class_enemy} прошел критический урон. Он составляет {damage}')
                 if target.armor > 0:
                     target.armor -= damage
-                    print('Урон нанесён по броне.')
+                    print(f' {damage} урона нанесено по броне.')
                 else:
                     target.health -= damage
-                    print('Урон нанесён по здоровью.')
+                    print(f' {damage} урона нанесено по здоровью.')
             else:
                 damage = self.damage
                 if target.armor > 0:
                     target.armor -= damage
-                    print('Урон нанесён по броне.')
+                    print(f' {damage} урона нанесено по броне.')
                 else:
                     target.health -= damage
-                    print('Урон нанесён по здоровью.')
+                    print(f' {damage} урона нанесено по здоровью.')
+            target.last_damage = damage
         else:
             print(f'{target.name} удалось уклониться')
 

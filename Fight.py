@@ -47,14 +47,14 @@ def choise_action(hero,enemy):
         if choise == '1':
             hero.check_inventory()
         elif choise == '2':
-            hero.use_skills()
+            hero.use_skills(enemy)
         elif choise == '3':
             print(f'{hero.name} атакует {enemy.class_enemy}')
             hero.attack(enemy)
 def event_fight(hero, enemy, event):
      count = 1
 
-     print(f'Ваш враг: {enemy.class_enemy} {event} уровня')
+     print(f'Ваш враг: {enemy.class_enemy} {enemy.health} ЗДР {event} уровня')
      print(f'Бросайте кости!')
      input('Нажмите Enter чтобы бросить кости')
      os.system('cls')
@@ -83,11 +83,13 @@ def event_fight(hero, enemy, event):
          os.system('cls')
          print('Победил герой')
          hero.no_miss = False
-         treasure = random.choice(data.list_of_artefacts[int(event)-1])
-#TODO Разбор всего  и добавление предмета
-         print(f'В награду герой получает: {treasure["name"]}\n{treasure["description"]}')
-         hero.inventory.append(treasure)
-         return True
+         if enemy.kill_status == True:
+             return True
+         else:
+             treasure = random.choice(data.list_of_artefacts[int(event)-1])
+             print(f'В награду герой получает: {treasure["name"]}\n{treasure["description"]}')
+             hero.inventory.append(treasure)
+             return True
      else:
          os.system('cls')
          print('Победил монстр')
