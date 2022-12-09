@@ -18,11 +18,12 @@ class Hero:
         self.no_miss = False
         self.vampir = [0, False]
         self.last_damage = 0
+        self.plus_damage = 0
     def use_skills(self, target):
         while True:
             print(f'[0] Если хотите выйти из списка умений')
             for number, skill in enumerate(self.skills, 1): #Показываем скиллы
-                print(f'[{number}] {skill["name"]}') #Показываем скиллы
+                print(f'[{number}] {skill["name"]}\n             Время отката:{self.skill_colldown[number - 1]} комнат ') #Показываем скиллы
             question = input('Выберите умение: ')
             if question == '0':
                 break
@@ -30,9 +31,39 @@ class Hero:
                 question = int(question) - 1
                 if question in range(len(self.skills)):
                     skill = self.skills[question]
-                    if skill['1hit'] == True:
-                        enemy.health -= 99999:
-                    #TODO Продолжить пременение скиллов + вопросы по коду
+                    if self.skill_colldown[question] == 0:
+                        if skill['1hit'] == True:
+                            target.health -= target.health
+                            print('Враг падает замертво от этого удара!')
+                        if skill['damage'] != None:
+                            if target.armor > 0:
+                                target.armor -= skill['damage']
+                                print(f'Вы нанесли врагу {skill["damage"]} урона по броне способностью {skill["name"]}')
+                            else:
+                                target.health -= skill['damage']
+                                print(f'Вы нанесли врагу {skill["damage"]} урона по здоровью способностью {skill["name"]}')
+
+                        if skill['crit_damage'] != None:
+                            self.chance_critical_damage += skill['crit_damage']
+                            print(f'Вы повысили свой шанс критического урона на {skill["crit_damage"] * 100} %')
+                        if skill['health'] != None:
+                            self.health += skill['health']
+                            print(f'Вы восстановили себе {skill["health"]} пунктов здоровья')
+                        if skill['armor'] != None:
+                            self.armor += skill['armor']
+                            print(f'Вы восстановили себе {skill["armor"]} пунктов брони')
+                        if skill['plus_damage'] != None:
+                            self.plus_damage += skill['plus_damage']
+                            print(f'Вы увеличили свой урон на {skill["plus_damage"]}')
+                        if 'овечк' in skill['name']:
+                            target.kill_status = True
+                            target.health -= target.health
+                        if skill['ignore'] != False:
+                            target.health = - skill['damage']
+                            print(f'Вы нанесли врагу {skill["damage"]} чистого урона способностью {skill["name"]}')
+                        self.skill_colldown[question] = skill['skill_colldown']
+                    else:
+                        print(f'Способность еще не перезарядилась. Время перезарядки {self.skill_colldown[question]} комнат')
 
 
 
@@ -42,14 +73,16 @@ class Hero:
                 print('Вы ввели неверное число.')
 
 
+#TODO Подумать над скиллами врагов. Подумать над логикой противника.
+#TODO Количество врагов в комнате.
+#TODO Добавить 2-3 артефакта
+
+    def colldown_count(self):
+        for skill in self.skill_colldown:
+            if skill != 0:
+                skill -= 1
 
 
-
-
-
-
-
-                #TODO Не забыть про чистый урон. Дописать скиллы и награду.
 
 
 
@@ -143,7 +176,7 @@ class Hero:
     def crit_hp_armor_choice(self, target):
         chance_critical = random.uniform(0, 1)
         if self.chance_critical_damage > chance_critical:
-            damage = self.damage * self.critical_damage
+            damage = (self.damage * self.critical_damage) + self.plus_damage
             print(f'У {self.name} прошел критический урон. Он составляет {damage}')
             if target.armor > 0:
                 target.armor -= damage
@@ -152,7 +185,7 @@ class Hero:
                 target.health -= damage
                 print(f' {damage} урона нанесено по здоровью.')
         else:
-            damage = self.damage
+            damage = self.damage + self.plus_damage
             if target.armor > 0:
                 target.armor -= damage
                 print(f' {damage} урона нанесено по броне.')

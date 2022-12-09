@@ -69,6 +69,7 @@ def event_fight(hero, enemy, event):
              input('Нажмите Enter чтобы завершить ход')
              count += 1
 
+
      else:
          while hero.health > 0 and enemy.health > 0:
              os.system('cls')
@@ -82,6 +83,7 @@ def event_fight(hero, enemy, event):
      if hero.health > 0:
          os.system('cls')
          print('Победил герой')
+         hero.plus_damage = 0
          hero.no_miss = False
          if enemy.kill_status == True:
              return True
@@ -90,6 +92,7 @@ def event_fight(hero, enemy, event):
              print(f'В награду герой получает: {treasure["name"]}\n{treasure["description"]}')
              hero.inventory.append(treasure)
              return True
+
      else:
          os.system('cls')
          print('Победил монстр')

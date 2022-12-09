@@ -26,8 +26,9 @@ while True:
     os.system('cls')
     print(map)
     print('_' * 50)
+    hero.skill_colldown()
     if event in fight_events:
-        enemy = create_enemy(event,lists_enemy)
+        enemy = create_enemy(event, lists_enemy)
         event_fight(hero,enemy,event)
         print(map)
 
