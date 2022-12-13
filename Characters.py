@@ -73,9 +73,8 @@ class Hero:
                 print('Вы ввели неверное число.')
 
 
-#TODO Подумать над скиллами врагов. Подумать над логикой противника.
-#TODO Количество врагов в комнате.
-#TODO Добавить 2-3 артефакта
+#TODO Подумать над скиллами врагов.
+
 
     def colldown_count(self):
         for skill in self.skill_colldown:
@@ -94,8 +93,19 @@ class Hero:
             self.crit_hp_armor_choice(target)
         else:
             print(f'{target.class_enemy} удалось уклониться')
+    def destroy_item(self):
+        item = self.inventory.pop(random.randint(0, len(self.inventory) - 1))
+        print(f'Вы потеряли {item["name"]} из своего инвентаря')
+    def dice_drop(self):
+        enemy_dice1 = random.randrange(1, 6)
+        enemy_dice2 = random.randrange(1, 6)
+        sum_enemy = enemy_dice1 + enemy_dice2
 
-    def check_inventory(self):
+        hero_dice1 = random.randrange(1, 6)
+        hero_dice2 = random.randrange(1, 6)
+        sum_hero = hero_dice1 + hero_dice2
+        return sum_hero, sum_enemy
+    def check_inventory(self, target):
         while True:
             print('В вашем инвентаре:')
             print('[0] Если хотите выйти из инвентаря.')
@@ -122,8 +132,12 @@ class Hero:
                             self.damage += item['damage']
                             print(item['short_desc'])
                         if item['armor'] != None:
-                            self.armor += item['armor']
-                            print(item['short_desc'])
+                            if isinstance(item['armor'], str):
+                                self.armor += self.maxhealth * (int(item['armor']) / 100)
+                                print(item['short_desc'])
+                            else:
+                                self.armor += item['armor']
+                                print(item['short_desc'])
                         if item['dodge'] != None:
                             self.dodge += item['dodge']
                             print(item['short_desc'])
@@ -142,10 +156,12 @@ class Hero:
                                 randomchest = random.choice([0, 1])
                                 if randomchest == 0:
                                     self.health -= 99999
-                                    print(item['short_desc'])
+                                    print(f'Когда открылся {item["name"]} оттуда вылетел дух и забрал вашу душу. Вы погибли.')
                                 else:
-                                    self.inventory.append(random.choice(data.list_of_artefacts[0]))
-                                    print(item['short_desc'])
+                                    artefact = random.choice(data.list_of_artefacts[0])
+                                    self.inventory.append(artefact)
+                                    print(f'Вы получаете {artefact["name"]}')
+                                    print(artefact['short_desc'])
                             else:
                                  for i in range(item['add_artefact_count']):
                                     self.inventory.append(random.choice(data.list_of_artefacts[0]))
@@ -155,11 +171,34 @@ class Hero:
                             self.skill_colldown = []
                             for i in self.skills:
                                 self.skill_colldown.append(0)
+                        if 'кубик' in item['name']:
+
+                            dice1, dice2 = self.dice_drop()
+                            if dice1 <= 4:
+                                artefact = random.choice(data.list_of_artefacts[0])
+                                self.inventory.append(artefact)
+                                print(f'Вам повезло - выпало {dice1}. Вы получаете {artefact["name"]}')
+                                print(artefact['short_desc'])
+                            elif 4 > dice1 <= 8:
+                                artefact = random.choice(data.list_of_artefacts[1])
+                                self.inventory.append(artefact)
+                                print(f'Вам повезло - выпало {dice1}. Вы получаете {artefact["name"]}')
+                                print(artefact['short_desc'])
+                            else:
+                                print(f'Вам не повезло - выпало {dice1}')
+                                self.destroy_item()
+
                         if 'вампиризм' in item['short_desc']:
                             self.vampir = [10, True]
                         if 'Петля' in item['name']:
                             self.health += self.last_damage
                             print(f'Вы восстановили {self.last_damage} ЗДР')
+                        if 'Кроличья' in item['name']:
+                            if 'стая' in target['name']:
+                                target.kill_status = True
+                                target.health -= target.health
+                            else:
+                                print('Противник отбросил кроличью лапку. Эффекта не произошло.')
 
                         item['count'] -= 1
                         if item['count'] <= 0:

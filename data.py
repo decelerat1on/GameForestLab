@@ -1,12 +1,12 @@
 # Список с врагами лабиринта и их характеристиками
-lists_enemy = [[{'name':'Волчья стая',
+lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'health': 250,
                  'damage': 15,
                  'armor': 50,
                  'dodge': 0.03,
                  'critical_damage': 0,
                  'chance_critical_damage': 0},
-                {'name': 'Гоблин с копьем',
+                {'name': 'Гоблин с копьем', #Удар копьем 30 урона кд 3 хода
                  'health': 250,
                  'damage': 15,
                  'armor': 50,
@@ -14,7 +14,7 @@ lists_enemy = [[{'name':'Волчья стая',
                  'critical_damage': 0,
                  'chance_critical_damage': 0
                  },
-                {'name':'Иссушенный труп',
+                {'name':'Иссушенный труп', #Восстановление 15 здоровья кд 3 хода
                  'health': 250,
                  'damage': 15,
                  'armor': 0,
@@ -23,7 +23,7 @@ lists_enemy = [[{'name':'Волчья стая',
                  'chance_critical_damage': 0
                  }],
 
-               [{'name':'Странствующий маг',
+               [{'name':'Странствующий маг', #Повышение шанса критического урона через 4 хода на 20%
                  'health': 400,
                  'damage': 40,
                  'armor': 100,
@@ -31,14 +31,14 @@ lists_enemy = [[{'name':'Волчья стая',
                  'critical_damage': 0,
                  'chance_critical_damage': 0
                  },
-                {'name':'Страж лабиринта',
+                {'name':'Страж лабиринта', #Восстановление 25 брони раз в 3 хода
                  'health': 600,
                  'damage': 25,
                  'armor': 150,
                  'dodge': 0,
                  'critical_damage': 0,
                  'chance_critical_damage': 0},
-                {'name':'Душа грешника',
+                {'name':'Душа грешника', #Проклятие, отнимающее 5% здоровья врага. КД 4 хода
                  'health': 350,
                  'damage': 35,
                  'armor': 100,
@@ -47,7 +47,7 @@ lists_enemy = [[{'name':'Волчья стая',
                  'chance_critical_damage': 0.2
                  }],
 
-                [{'name':'Тролль',
+                [{'name':'Тролль', # Двойная атака раз в 4 хода
                   'health': 700,
                   'damage': 30,
                   'armor': 150,
@@ -55,7 +55,7 @@ lists_enemy = [[{'name':'Волчья стая',
                   'critical_damage': 0,
                   'chance_critical_damage': 0
                   },
-                {'name':'Демон лабиринта',
+                {'name':'Демон лабиринта', #Повышение шанса уклонения на 15% через 5 ходов боя
                  'health': 650,
                  'damage': 60,
                  'armor': 200,
@@ -63,7 +63,7 @@ lists_enemy = [[{'name':'Волчья стая',
                  'critical_damage': 0,
                  'chance_critical_damage': 0
                  },
-                {'name':'Огненный дракон',
+                {'name':'Огненный дракон', #Дыхание огнем 50 урона раз в 3 хода
                  'health': 700,
                  'damage': 40,
                  'armor': 400,
@@ -72,7 +72,7 @@ lists_enemy = [[{'name':'Волчья стая',
                  'chance_critical_damage': 0
                  }],
 
-                [{'name':'Хранитель лабиринта',
+                [{'name':'Хранитель лабиринта', #Уничтожение артефакта раз в 2 хода  + звуковой удар 50 урона раз в 3 хода + проникнуть в разум и обездвижить раз в 6 ходов
                   'health': 1000,
                   'damage': 40,
                   'armor': 500,
@@ -80,7 +80,7 @@ lists_enemy = [[{'name':'Волчья стая',
                   'critical_damage': 0,
                   'chance_critical_damage': 0
                   },
-                {'name':'Осколок леса',
+                {'name':'Осколок леса', #Тайминговый босс
                  'health': 3000,
                  'damage': 0,
                  'armor': 0,
@@ -169,7 +169,7 @@ lists_heroes = [{'name':'Маг',
                             'plus_damage': 100,
                             'skill_colldown': 3},
 }]
-
+#TODO Добавить еще загодок и ключ с уровнем артефакта для награды
 # Список с загадками
 list_of_mysterys = [
     {'50':'На двух руках - 10 пальцев. Сколько пальцев на 10 руках?'},
@@ -351,7 +351,6 @@ list_of_artefacts = [[{'name': 'Родниковая вода',
                        'dodge': None,
                        'critical_damage': None,
                        'chance_critical_damage': None,
-
                        'skill': {'name': 'Джокер',
                                  '1hit': False,
                                  'damage': 250,
@@ -361,11 +360,28 @@ list_of_artefacts = [[{'name': 'Родниковая вода',
                                  'armor': None,
                                  'plus_damage': None,
                                  'skill_colldown': 4},
-
                        'add_skill': True,
                        'double_attack': None,
                        'no_miss': False,
                        'rearm': False},
+
+                     {'name': 'Костяные кубики',
+                       'description': 'Игральные кубики выполненные из кости. Грани сточились от времени, а на цифрах 5 и 6 нарисованы черепа.',
+                       'short_desc': 'Бросайте кубики. 2-4 - Артефакт 1 уроня / 5-8 - Артефакт 2 уровня / 9-12 - лучше не выбрасывать ',
+                       'add_artefacts': True,
+                       'add_artefact_count': 2,
+                       'count': 1,
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None,
+                       'add_skill': False,
+                       'double_attack': None,
+                       'no_miss': False,
+                       'rearm': False},
+
 #TODO Если появится вампирские предметы - починить процент вампиризма в добавлении. ( Класс character )
                       {'name': 'Болотная пиявка',
                        'description': 'Магическая болотная пивка. Кто-то рассказывал, что она может передать часть своих свойств, но никогда не отцепится',
@@ -384,22 +400,22 @@ list_of_artefacts = [[{'name': 'Родниковая вода',
                        'no_miss': False,
                        'rearm': False},
 
-                       # {'name': 'Глаз бога',
-                       # 'description': 'Глаз, который был утерян неким Вотаном. Кажется его еще называли Один.',
-                       # 'short_desc': 'Выдаёт новую способность: Позволяет посмотреть на 2 клетки вперед с кд 3 клетки',
-                       # 'add_artefacts': False,
-                       # 'add_artefact_count': None,
-                       # 'count': 1,
-                       # 'health': None,
-                       # 'damage': None,
-                       # 'armor': None,
-                       # 'dodge': None,
-                       # 'critical_damage': None,
-                       # 'chance_critical_damage': None,
-                       # 'add_skill': True,
-                       # 'double_attack': None,
-                       # 'no_miss': False,
-                       # 'rearm': False}
+                      {'name': 'Кроличья лапка',
+                       'description': 'Знаменитый оберег. Поможет избавиться от недоброжелательных животных',
+                       'short_desc': 'В бою с любыми животными: Прогоняет животных и не оставляет награды.',
+                       'add_artefacts': False,
+                       'add_artefact_count': None,
+                       'count': 1,
+                       'health': None,
+                       'damage': None,
+                       'armor': None,
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None,
+                       'add_skill': False,
+                       'double_attack': None,
+                       'no_miss': False,
+                       'rearm': False},
                       ],
 
 
@@ -436,23 +452,24 @@ list_of_artefacts = [[{'name': 'Родниковая вода',
                        'double_attack': None,
                        'no_miss': False,
                        'rearm': False},
-#TODO До лучших времен для тестов
-                      # {'name': 'Кукла некроманта',
-                      #  'description': 'Кажется эта кукла была инструментом чёрном магии или ворожбы.',
-                      #  'short_desc': 'Даёт возможность сменить класс персонажа с полным восстановлением показателей.',
-                      #  'add_artefacts': False,
-                      #  'add_artefact_count': None,
-                      #  'count': 1,
-                      #  'health': None,
-                      #  'damage': None,
-                      #  'armor': None,
-                      #  'dodge': None,
-                      #  'critical_damage': None,
-                      #  'chance_critical_damage': None,
-                      #  'add_skill': False,
-                      #  'double_attack': None,
-                      #  'no_miss': False,
-                      #  'rearm': False}
+
+
+                      {'name': 'Набор инструментов лучшего качества',
+                       'description': 'Набор кузнечных инструментов. Владелец держал их до последнего, судя по оторванной руке.',
+                       'short_desc': 'Восстанавливает 50% от вашей брони.',
+                       'add_artefacts': False,
+                       'add_artefact_count': None,
+                       'count': 1,
+                       'health': None,
+                       'damage': None,
+                       'armor': '50',
+                       'dodge': None,
+                       'critical_damage': None,
+                       'chance_critical_damage': None,
+                       'add_skill': False,
+                       'double_attack': None,
+                       'no_miss': False,
+                       'rearm': False},
                       ]]
 
 
@@ -470,7 +487,7 @@ maptest = '''
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║x║1║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║3║1║1║1║з║з║x║
+║x║3║1║I║1║з║з║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║2║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣

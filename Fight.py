@@ -3,21 +3,13 @@ import os
 from data import *
 
 
-fight_events = ['1','2','3','Б']
-def dice_drop():
-    enemy_dice1 = random.randrange(1, 6)
-    enemy_dice2 = random.randrange(1, 6)
-    sum_enemy = enemy_dice1 + enemy_dice2
-
-    hero_dice1 = random.randrange(1, 6)
-    hero_dice2 = random.randrange(1, 6)
-    sum_hero = hero_dice1 + hero_dice2
-    return sum_hero, sum_enemy
+fight_events = ['1','2','3','Б','I']
+#TODO Подобрать символы к комнатам с несколькими врагами
 # Бой начинается с броска кубика D6.
-def whoseattack():
-    sum_hero, sum_enemy = dice_drop()
+def whoseattack(hero):
+    sum_hero, sum_enemy = hero.dice_drop()
     while sum_hero == sum_enemy:
-        sum_hero, sum_enemy = dice_drop()
+        sum_hero, sum_enemy = hero.dice_drop()
         print(f'Выпало одинаковое значение. Перебрасываем!')
         input('Нажмите Enter чтобы бросить кости')
         os.system('cls')
@@ -45,7 +37,7 @@ def choise_action(hero,enemy):
         choise = input('[1] - Посмотреть инвентарь\n[2] - Использовать умение\n[3] - Ударить\nВведите действие: ')
         os.system('cls')
         if choise == '1':
-            hero.check_inventory()
+            hero.check_inventory(enemy)
         elif choise == '2':
             hero.use_skills(enemy)
         elif choise == '3':
@@ -58,7 +50,7 @@ def event_fight(hero, enemy, event):
      print(f'Бросайте кости!')
      input('Нажмите Enter чтобы бросить кости')
      os.system('cls')
-     if whoseattack():
+     if whoseattack(hero):
          while hero.health > 0 and enemy.health > 0:
              os.system('cls')
              print(f'Ваш враг: {enemy.class_enemy} {event} уровня.\nХод:{count}')
@@ -68,6 +60,10 @@ def event_fight(hero, enemy, event):
              enemy.attack(hero)
              input('Нажмите Enter чтобы завершить ход')
              count += 1
+
+#TODO Сюда прописать рандомный выбор использования или неиспользования скилла противника.
+#TODO Создать скиллы у противников по примеру с героем - data
+#TODO Использование врагом в его классе все на примере героя
 
 
      else:

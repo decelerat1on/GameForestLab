@@ -28,6 +28,22 @@ while True:
     print('_' * 50)
     hero.skill_colldown()
     if event in fight_events:
+        if event == 'I':
+            enemy = create_enemy('1', lists_enemy)
+            event_fight(hero, enemy, '1')
+            enemy = create_enemy('1', lists_enemy)
+            event_fight(hero, enemy, '1')
+            print(map)
+            continue
+
+        elif event == 'Z':
+            enemy = create_enemy('2', lists_enemy)
+            event_fight(hero, enemy, '2')
+            enemy = create_enemy('2', lists_enemy)
+            event_fight(hero, enemy, '2')
+            print(map)
+            continue
+
         enemy = create_enemy(event, lists_enemy)
         event_fight(hero,enemy,event)
         print(map)
