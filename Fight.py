@@ -1,11 +1,11 @@
 from Characters import *
 import os
-from data import *
+import data
 
 
-fight_events = ['1','2','3','Б','I']
-#TODO Подобрать символы к комнатам с несколькими врагами
-# Бой начинается с броска кубика D6.
+fight_events = ['1','2','3','۩','꠳','꠴']
+#TODO Подобрать символы к комнатам с несколькими врагами +
+
 def whoseattack(hero):
     sum_hero, sum_enemy = hero.dice_drop()
     while sum_hero == sum_enemy:
@@ -57,12 +57,17 @@ def event_fight(hero, enemy, event):
              choise_action(hero,enemy)
              print('_' * 50)
              print(f'{enemy.class_enemy} атакует {hero.name}')
-             enemy.attack(hero)
+             use_skill = random.choice(0,1)
+             if use_skill == 0:
+                enemy.attack(hero)
+             else:
+
+
              input('Нажмите Enter чтобы завершить ход')
              count += 1
 
 #TODO Сюда прописать рандомный выбор использования или неиспользования скилла противника.
-#TODO Создать скиллы у противников по примеру с героем - data
+#TODO Создать скиллы у противников по примеру с героем - data +
 #TODO Использование врагом в его классе все на примере героя
 
 

@@ -5,14 +5,36 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'armor': 50,
                  'dodge': 0.03,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0},
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': None,
+                            '1hit': None,
+                            'damage': None,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': None,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': None,
+                            'plus_dodge': None
+                            }},
                 {'name': 'Гоблин с копьем', #Удар копьем 30 урона кд 3 хода
                  'health': 250,
                  'damage': 15,
                  'armor': 50,
                  'dodge': 0.03,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': 'Удар копьём',
+                            '1hit': None,
+                            'damage': 30,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': None,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': 3,
+                            'plus_dodge': None
+                            }
                  },
                 {'name':'Иссушенный труп', #Восстановление 15 здоровья кд 3 хода
                  'health': 250,
@@ -20,16 +42,37 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'armor': 0,
                  'dodge': 0.03,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': 'Лечение',
+                            '1hit': None,
+                            'damage': None,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': 15,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': 3,
+                            'plus_dodge': None
+                            }
                  }],
-
                [{'name':'Странствующий маг', #Повышение шанса критического урона через 4 хода на 20%
                  'health': 400,
                  'damage': 40,
                  'armor': 100,
                  'dodge': 0.1,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': 'Магия огня',
+                            '1hit': None,
+                            'damage': None,
+                            'ignore': False,
+                            'crit_damage': 0.2,
+                            'health': None,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': 4,
+                            'plus_dodge': None
+                            }
                  },
                 {'name':'Страж лабиринта', #Восстановление 25 брони раз в 3 хода
                  'health': 600,
@@ -37,14 +80,37 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'armor': 150,
                  'dodge': 0,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0},
-                {'name':'Душа грешника', #Проклятие, отнимающее 5% здоровья врага. КД 4 хода
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': 'Восстановление пластин',
+                            '1hit': None,
+                            'damage': None,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': None,
+                            'armor': 25,
+                            'plus_damage': None,
+                            'skill_colldown': 3,
+                            'plus_dodge': None
+                            }
+                 },
+                {'name':'Душа грешника', #Проклятие, отнимающее 50 здоровья врага. КД 4 хода
                  'health': 350,
                  'damage': 35,
                  'armor': 100,
                  'dodge': 0.3,
                  'critical_damage': 2,
-                 'chance_critical_damage': 0.2
+                 'chance_critical_damage': 0.2,
+                 'skill1': {'name': 'Проклятье',
+                            '1hit': None,
+                            'damage': 50,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': None,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': 4,
+                            'plus_dodge': None
+                            }
                  }],
 
                 [{'name':'Тролль', # Двойная атака раз в 4 хода
@@ -53,7 +119,18 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                   'armor': 150,
                   'dodge': 0.25,
                   'critical_damage': 0,
-                  'chance_critical_damage': 0
+                  'chance_critical_damage': 0,
+                  'skill1': {'name': 'Двойная атака',
+                             '1hit': None,
+                             'damage': None,
+                             'ignore': False,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': 30,
+                             'skill_colldown': 4,
+                             'plus_dodge': None
+                             }
                   },
                 {'name':'Демон лабиринта', #Повышение шанса уклонения на 15% через 5 ходов боя
                  'health': 650,
@@ -61,7 +138,17 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'armor': 200,
                  'dodge': 0.2,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': 'Уворотливость',
+                            '1hit': None,
+                            'damage': None,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': None,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': 5,
+                            'plus_dodge': 0.15}
                  },
                 {'name':'Огненный дракон', #Дыхание огнем 50 урона раз в 3 хода
                  'health': 700,
@@ -69,7 +156,17 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'armor': 400,
                  'dodge': 0.1,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0
+                 'chance_critical_damage': 0,
+                 'skill1': {'name': 'Дыхание огнем',
+                            '1hit': None,
+                            'damage': 50,
+                            'ignore': False,
+                            'crit_damage': None,
+                            'health': None,
+                            'armor': None,
+                            'plus_damage': None,
+                            'skill_colldown': 3,
+                            'plus_dodge': None}
                  }],
 
                 [{'name':'Хранитель лабиринта', #Уничтожение артефакта раз в 2 хода  + звуковой удар 50 урона раз в 3 хода + проникнуть в разум и обездвижить раз в 6 ходов
@@ -169,14 +266,23 @@ lists_heroes = [{'name':'Маг',
                             'plus_damage': 100,
                             'skill_colldown': 3},
 }]
-#TODO Добавить еще загодок и ключ с уровнем артефакта для награды
+#TODO Добавить еще загадок и ключ с уровнем артефакта для награды
 # Список с загадками
 list_of_mysterys = [
-    {'50':'На двух руках - 10 пальцев. Сколько пальцев на 10 руках?'},
+    {'Ножницы':'Их двое, но они одни. Их драму трудно нам понять. Служа всегда, должны они, соединяя, разделять.?'},
     {'Корень':'Он слово или часть его. Он есть у зуба и у ели.Нет у добра его, но, говорят,у зла бывает?'},
-    {'Скрипка':'Её прародители живут в лесу. Своим голосом она может очаровать любого. Её имя связано с ключом. Что это?'},
-    {'Огонь':'Это чудище сжирает Всё, что встретит на пути.Но, насытившись едою, Умирает вместе с ней. Что это?'},
-    {'Одуванчик':'Кто может дать потомство лишь однажды? Кто может дать потомство, став седым?'}
+    {'Сон':'Слаще мёда, тяжелее железа, в магазине не продаётся, на базаре не покупается.'},
+    {'Цветы':'О них часто говорят «они живые», когда они умерли. Ими встречают рождение и провожают в могилу.'},
+    {'Смерть':'Все люди равны перед ней. Одна лишь мысль о ней приводит нас в смятение. Мы идём к ней навстречу, вместо того чтобы просто ожидать её.'},
+    {'Пчела':'Она трудится с детства до самой смерти, но нет на свете слаще её труда.'},
+    {'Время':'Чего всегда не хватает радости, но в избытке у печали?'},
+    {'Время':'Оно летит без крыльев, а идёт без ног. Не доверяет никому, но провести его может любой.'},
+    {'Паук':'Его интриги очевидны. Великолепен их узор. Он их плетёт не ради красоты, а просто хочет жить.'},
+    {'Память':'Если мы не сделали дело, то говорим, что она нас подвела. Оперативная она в железе, а вам тренировать её полезно.'},
+    {'Яма':'Чем больше из неё берёшь, тем больше она становится.'}
+
+
+
 ]
 
 # Список с артефактами
@@ -487,19 +593,19 @@ maptest = '''
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║x║1║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║3║1║I║1║з║з║x║
+║x║3║1║꠳║1║?║?║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║x║x║2║x║x║x║x║
+║x║x║x║꠳║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║з║з║1║2║x║x║x║
+║x║?║?║2║2║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║x║x║x║2║x║x║x║
+║x║x║x║x║꠴║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║3║2║2║2║x║x║x║
+║x║3║2║꠴║2║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║з║x║x║x║x║x║x║
+║x║?║x║x║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║Б║x║x║x║x║x║x║
+║x║۩║x║x║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║x║x║x║x║x║
 ╚═╩═╩═╩═╩═╩═╩═╩═╝

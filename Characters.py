@@ -73,16 +73,15 @@ class Hero:
                 print('Вы ввели неверное число.')
 
 
-#TODO Подумать над скиллами врагов.
+
+
+
 
 
     def colldown_count(self):
         for skill in self.skill_colldown:
             if skill != 0:
                 skill -= 1
-
-
-
 
 
     def attack(self, target):
@@ -248,6 +247,9 @@ class Enemy:
         self.critical_damage = enemy_data['critical_damage']
         self.chance_critical_damage = enemy_data['chance_critical_damage']
         self.kill_status = False
+        self.skill1 = enemy_data['skill1']
+        self.skill_colldown = [0, 0]
+
 
     def attack(self, target):
         dodge = random.uniform(0,1)
@@ -274,5 +276,33 @@ class Enemy:
         else:
             print(f'{target.name} удалось уклониться')
 
+    def enemy_use_skill(self, target):
+        if self.skill1['skill_colldown'] == 0:
+            if self.skill1['1hit'] == True:
+                target.health -= target.health
+                print('Враг убивает Вас с одного удара!')
+            if self.skill1['damage'] != None:
+                if target.armor > 0:
+                    target.armor -= self.skill1['damage']
+                    print(f'{self.class_enemy} нанес {self.skill1["damage"]} урона по броне способностью {self.skill1["name"]}')
+                else:
+                    target.health -= self.skill1['damage']
+                    print(f'{self.class_enemy} нанес {self.skill1["damage"]} урона по здоровью способностью {self.skill1["name"]}')
+
+            if self.skill1['crit_damage'] != None:
+                self.chance_critical_damage += self.skill1['crit_damage']
+                print(f'{self.class_enemy} повысил свой шанс критического урона на {self.skill1["crit_damage"] * 100} %')
+            if self.skill1['health'] != None:
+                self.health += self.skill1['health']
+                print(f'{self.class_enemy} восстановил себе {self.skill1["health"]} пунктов здоровья')
+            if self.skill1['armor'] != None:
+                self.armor += self.skill1['armor']
+                print(f'{self.class_enemy} восстановил себе {self.skill1["armor"]} пунктов брони')
+            if self.skill1['plus_dodge'] != None:
+                self.dodge += self.skill1['plus_dodge']
+                print(f'{self.class_enemy} увеличил своё уклонение на {self.skill1["plus_dodge"]}')
+            if self.skill1['plus_damage'] != None:
+                self.dodge += self.skill1['plus_damage']
+                print(f'{self.class_enemy} увеличил свою силу атаки на {self.skill1["plus_damage"]}')
 
 
