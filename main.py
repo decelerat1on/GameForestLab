@@ -17,7 +17,7 @@ print('''Добро пожаловать в Лесной лабиринт
 Воин - Высокий уровень здоровья и брони, средний урон, низкий шанс критического урона
 Умения: Удар топором - 250 урона и +10 брони в бою / Увеличивает урон на 1''')
 hero = create_hero(lists_heroes)
-
+#TODO Добавить событие загадок и сделать в дополнительном файле ( func )
 print(map)
 x, y = findhero(map)
 while True:
@@ -26,7 +26,7 @@ while True:
     os.system('cls')
     print(map)
     print('_' * 50)
-    hero.skill_colldown()
+    hero.colldown_count()
     if event in fight_events:
         if event == '꠳':
             enemy = create_enemy('1', lists_enemy)

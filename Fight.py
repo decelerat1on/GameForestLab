@@ -4,7 +4,7 @@ import data
 
 
 fight_events = ['1','2','3','۩','꠳','꠴']
-#TODO Подобрать символы к комнатам с несколькими врагами +
+
 
 def whoseattack(hero):
     sum_hero, sum_enemy = hero.dice_drop()
@@ -57,26 +57,15 @@ def event_fight(hero, enemy, event):
              choise_action(hero,enemy)
              print('_' * 50)
              print(f'{enemy.class_enemy} атакует {hero.name}')
-             use_skill = random.choice(0,1)
-             if use_skill == 0:
-                enemy.attack(hero)
-             else:
-
-
+             enemy_attack_or_skill(enemy, hero)
              input('Нажмите Enter чтобы завершить ход')
              count += 1
-
-#TODO Сюда прописать рандомный выбор использования или неиспользования скилла противника.
-#TODO Создать скиллы у противников по примеру с героем - data +
-#TODO Использование врагом в его классе все на примере героя
-
-
      else:
          while hero.health > 0 and enemy.health > 0:
              os.system('cls')
              print(f'Ваш враг: {enemy.class_enemy} {event} уровня.\nХод:{count}')
              print(f'{enemy.class_enemy} атакует {hero.name}')
-             enemy.attack(hero)
+             enemy_attack_or_skill(enemy, hero)
              print('_' * 50)
              choise_action(hero,enemy)
              input('Нажмите Enter чтобы завершить ход')
@@ -101,3 +90,18 @@ def event_fight(hero, enemy, event):
 
 
 
+def enemy_attack_or_skill(enemy, hero):
+    use_skill = random.choice([0,1])
+    if use_skill == 0:
+        enemy.attack(hero)
+    else:
+        if enemy.skill1['name'] != None:
+            if enemy.skill_colldown == 0:
+                enemy.enemy_use_skill(hero)
+            else:
+                enemy.attack(hero)
+            enemy.skill_colldown -= 1
+            if enemy.skill_colldown < 0:
+                enemy.skill_colldown = 0
+        else:
+            enemy.attack(hero)

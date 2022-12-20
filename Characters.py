@@ -19,6 +19,7 @@ class Hero:
         self.vampir = [0, False]
         self.last_damage = 0
         self.plus_damage = 0
+        self.double_attack = False
     def use_skills(self, target):
         while True:
             print(f'[0] Если хотите выйти из списка умений')
@@ -80,7 +81,7 @@ class Hero:
 
     def colldown_count(self):
         for skill in self.skill_colldown:
-            if skill != 0:
+            if skill > 0:
                 skill -= 1
 
 
@@ -118,6 +119,7 @@ class Hero:
                 if question in range(len(self.inventory)):
                     item = self.inventory[question]
                     print(f'{item["short_desc"]} [{item["count"]} шт]')
+#TODO Добавить красивые принты на использование предметов
                     second_quest = input("Использовать предмет? Да/Нет").lower()
                     if second_quest == "да":
                         if item['health'] != None:
@@ -200,6 +202,10 @@ class Hero:
                                 print('Противник отбросил кроличью лапку. Эффекта не произошло.')
 
                         item['count'] -= 1
+                        if item['double_attack'] != None:
+                            self.double_attack = True
+
+
                         if item['count'] <= 0:
                             self.inventory.remove(item)
                     else:
@@ -214,7 +220,11 @@ class Hero:
     def crit_hp_armor_choice(self, target):
         chance_critical = random.uniform(0, 1)
         if self.chance_critical_damage > chance_critical:
-            damage = (self.damage * self.critical_damage) + self.plus_damage
+            if self.double_attack == True:
+                self.double_attack = False
+                damage = ((self.damage * self.critical_damage) + self.plus_damage) * 2
+            else:
+                damage = (self.damage * self.critical_damage) + self.plus_damage
             print(f'У {self.name} прошел критический урон. Он составляет {damage}')
             if target.armor > 0:
                 target.armor -= damage
@@ -223,16 +233,23 @@ class Hero:
                 target.health -= damage
                 print(f' {damage} урона нанесено по здоровью.')
         else:
-            damage = self.damage + self.plus_damage
+            if self.double_attack == True:
+                self.double_attack = False
+                damage = (self.damage + self.plus_damage) * 2
+            else:
+                damage = self.damage + self.plus_damage
             if target.armor > 0:
                 target.armor -= damage
                 print(f' {damage} урона нанесено по броне.')
             else:
                 target.health -= damage
                 print(f' {damage} урона нанесено по здоровью.')
-
+#TODO Дописать
+#TODO
     def add_item(self, item):
+        items_inventory_name = [inventory_item['name'] for inventory_item in self.inventory]
         for item_inventory in self.inventory:
+
             if item['name'] == item_inventory['name']:
                 item_inventory['count'] += 1
             else:
@@ -248,7 +265,7 @@ class Enemy:
         self.chance_critical_damage = enemy_data['chance_critical_damage']
         self.kill_status = False
         self.skill1 = enemy_data['skill1']
-        self.skill_colldown = [0, 0]
+        self.skill_colldown = 0
 
 
     def attack(self, target):
@@ -277,7 +294,7 @@ class Enemy:
             print(f'{target.name} удалось уклониться')
 
     def enemy_use_skill(self, target):
-        if self.skill1['skill_colldown'] == 0:
+        if self.skill_colldown == 0:
             if self.skill1['1hit'] == True:
                 target.health -= target.health
                 print('Враг убивает Вас с одного удара!')
@@ -288,7 +305,6 @@ class Enemy:
                 else:
                     target.health -= self.skill1['damage']
                     print(f'{self.class_enemy} нанес {self.skill1["damage"]} урона по здоровью способностью {self.skill1["name"]}')
-
             if self.skill1['crit_damage'] != None:
                 self.chance_critical_damage += self.skill1['crit_damage']
                 print(f'{self.class_enemy} повысил свой шанс критического урона на {self.skill1["crit_damage"] * 100} %')
@@ -304,5 +320,4 @@ class Enemy:
             if self.skill1['plus_damage'] != None:
                 self.dodge += self.skill1['plus_damage']
                 print(f'{self.class_enemy} увеличил свою силу атаки на {self.skill1["plus_damage"]}')
-
-
+            self.skill_colldown = self.skill1['skill_colldown']
