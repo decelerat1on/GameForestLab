@@ -1,3 +1,5 @@
+import random
+
 # Список с врагами лабиринта и их характеристиками
 lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'health': 250,
@@ -175,7 +177,37 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                   'armor': 500,
                   'dodge': 0.18,
                   'critical_damage': 0,
-                  'chance_critical_damage': 0
+                  'chance_critical_damage': 0,
+                  'skill1': {'name': 'Уничтожение артефакта',
+                             '1hit': None,
+                             'damage': None,
+                             'ignore': False,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': None,
+                             'skill_colldown': None,
+                             'plus_dodge': None},
+                  'skill2': {'name': 'Звуковой удар',
+                             '1hit': None,
+                             'damage': 50,
+                             'ignore': False,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': None,
+                             'skill_colldown': 3,
+                             'plus_dodge': None},
+                  'skill3': {'name': 'Обездвижить',
+                             '1hit': None,
+                             'damage': 50,
+                             'ignore': False,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': None,
+                             'skill_colldown': 6,
+                             'plus_dodge': None}
                   },
                 {'name':'Осколок леса', #Тайминговый босс
                  'health': 3000,
@@ -579,7 +611,7 @@ list_of_artefacts = [[{'name': 'Родниковая вода',
 
 
 # Карта лабиринта
-maptest = '''
+map = '''
 ╔═╦═╦═╦═╦═╦═╦═╦═╗
 ║x║x║x║x║x║x║x║x║ 
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
@@ -628,3 +660,4 @@ maptest = '''
 # ║б ║
 # ╚══╝
 # """
+

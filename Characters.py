@@ -120,7 +120,6 @@ class Hero:
                 if question in range(len(self.inventory)):
                     item = self.inventory[question]
                     print(f'{item["short_desc"]} [{item["count"]} шт]')
-#TODO Добавить красивые принты на использование предметов
                     second_quest = input("Использовать предмет? Да/Нет").lower()
                     if second_quest == "да":
                         if item['health'] != None:

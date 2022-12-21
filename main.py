@@ -1,6 +1,6 @@
 from map_info import movehero, findhero
-from data import maptest as map, lists_heroes, lists_enemy
-from func import create_hero
+from data import *
+from func import *
 from Fight import fight_events, create_enemy, event_fight
 import os
 
@@ -35,7 +35,6 @@ while True:
             event_fight(hero, enemy, '1')
             print(map)
             continue
-
         elif event == '꠴':
             enemy = create_enemy('2', lists_enemy)
             event_fight(hero, enemy, '2')
@@ -43,10 +42,13 @@ while True:
             event_fight(hero, enemy, '2')
             print(map)
             continue
-
         enemy = create_enemy(event, lists_enemy)
         event_fight(hero,enemy,event)
         print(map)
+    elif event == '*':
+        mystery(list_of_mysterys, list_of_artefacts, hero)
+        print(map)
+        continue
 
 
 
