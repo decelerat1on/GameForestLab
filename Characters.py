@@ -9,6 +9,7 @@ class Hero:
         self.maxhealth = self.health
         self.damage = data_hero['damage']
         self.armor = data_hero['armor']
+        self.maxarmor = self.armor
         self.dodge = data_hero['dodge']
         self.critical_damage = data_hero['critical_damage']
         self.chance_critical_damage = data_hero['chance_critical_damage']
@@ -125,33 +126,33 @@ class Hero:
                         if item['health'] != None:
                             if isinstance(item['health'], str):
                                 self.health += self.maxhealth * (int(item['health']) / 100)
-                                print(item['short_desc'])
+                                print(f'Вы восстановили себе {item["health"]}% от максимального здоровья')
                             else:
                                 self.health += item['health']
-                                print(item['short_desc'])
+                                print(f'Вы восстановили себе {item["health"]} пунктов здоровья')
                         if item['damage'] != None:
                             self.damage += item['damage']
-                            print(item['short_desc'])
+                            print(f'Вы увеличили свой урон на {item["damage"]}')
                         if item['armor'] != None:
                             if isinstance(item['armor'], str):
-                                self.armor += self.maxhealth * (int(item['armor']) / 100)
-                                print(item['short_desc'])
+                                self.armor += self.maxarmor * (int(item['armor']) / 100)
+                                print(f'Вы восстановили себе {item["armor"]}% от максимальной брони')
                             else:
                                 self.armor += item['armor']
-                                print(item['short_desc'])
+                                print(f'Вы восстановили себе {item["armor"]} пуктов брони')
                         if item['dodge'] != None:
                             self.dodge += item['dodge']
-                            print(item['short_desc'])
+                            print(f'Ваше уклонение увеличилось на {item["dodge"] * 100}%')
                         if item['critical_damage'] != None:
                             self.critical_damage += item['critical_damage']
-                            print(item['short_desc'])
+                            print(f'Критического урон увеличился на {item["critical_damage"] * 100}%')
                         if item['chance_critical_damage'] != None:
                             self.chance_critical_damage += item['chance_critical_damage']
-                            print(item['short_desc'])
+                            print(f'Шанс критического урона увеличился на {item["critical_damage"] * 100}%')
                         if item['add_skill'] == True:
                             self.skills.append(item['skill'])
                             self.skill_colldown.append(0)
-                            print(item['short_desc'])
+                            print(f'Вы получили новое умение {item["skill"]["name"]}')
                         if item['add_artefacts'] == True:
                             if item['health'] == -99999:
                                 randomchest = random.choice([0, 1])
@@ -162,16 +163,18 @@ class Hero:
                                     artefact = random.choice(data.list_of_artefacts[0])
                                     self.inventory.append(artefact)
                                     print(f'Вы получаете {artefact["name"]}')
-                                    print(artefact['short_desc'])
                             else:
                                  for i in range(item['add_artefact_count']):
                                     self.inventory.append(random.choice(data.list_of_artefacts[0]))
+                                    print('Вы получили новый артефакт')
                         if item['no_miss'] == True:
                             self.no_miss = True
+                            print('Ваши атаки теперь бьют без промаха')
                         if item['rearm'] == True:
                             self.skill_colldown = []
                             for i in self.skills:
                                 self.skill_colldown.append(0)
+                            print('Все кулдауны способностей сброшены')
                         if 'кубик' in item['name']:
 
                             dice1, dice2 = self.dice_drop()
@@ -191,6 +194,7 @@ class Hero:
 
                         if 'вампиризм' in item['short_desc']:
                             self.vampir = [10, True]
+                            print(f'Вы получили вампиризм от атак. Он составляет 10 процентов. ')
                         if 'Петля' in item['name']:
                             self.health += self.last_damage
                             print(f'Вы восстановили {self.last_damage} ЗДР')
@@ -198,12 +202,14 @@ class Hero:
                             if 'стая' in target['name']:
                                 target.kill_status = True
                                 target.health -= target.health
+                                print('Все животные из комнаты разбежались и не оставили наград.')
                             else:
                                 print('Противник отбросил кроличью лапку. Эффекта не произошло.')
 
                         item['count'] -= 1
                         if item['double_attack'] != None:
                             self.double_attack = True
+                            print('Вы наносите двойную атаку противнику')
 
 
                         if item['count'] <= 0:
@@ -245,7 +251,7 @@ class Hero:
                 target.health -= damage
                 print(f' {damage} урона нанесено по здоровью.')
 #TODO Дописать
-#TODO
+
     def add_item(self, item):
         items_inventory_name = [inventory_item['name'] for inventory_item in self.inventory]
         for item_inventory in self.inventory:
