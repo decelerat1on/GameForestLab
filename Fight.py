@@ -1,6 +1,7 @@
 from Characters import *
 import os
 import data
+import time
 
 
 fight_events = ['1','2','3','۩','꠳','꠴']
@@ -105,3 +106,43 @@ def enemy_attack_or_skill(enemy, hero):
                 enemy.skill_colldown = 0
         else:
             enemy.attack(hero)
+def time_count():
+
+def fight_with_boss(hero):
+    boss = random.choice(data.lists_enemy[-1])
+    boss = Enemy(boss)
+    count = 1
+    print(f'Перед вами финальный босс: {boss.class_enemy} {boss.health} ЗДР.')
+    input('Нажмите Enter чтобы продолжить')
+    os.system('cls')
+    if boss['name'] == 'Осколок леса':
+#Фиксировать время в минутах и секундах
+        while boss.health > 0:
+
+
+    else:
+        while hero.health > 0 and boss.health > 0:
+            os.system('cls')
+            print(f'Ваш враг: {boss.class_enemy} {boss.health} ЗДР.\nХод:{count}')
+            choise_action(hero, boss)
+            print('_' * 50)
+            print(f'{boss.class_enemy} атакует {hero.name}')
+            enemy_attack_or_skill(boss, hero)
+            input('Нажмите Enter чтобы завершить ход')
+            count += 1
+    if hero.health > 0:
+        os.system('cls')
+        print('Победил герой')
+        hero.plus_damage = 0
+        hero.no_miss = False
+    else:
+        os.system('cls')
+        print('Победил монстр')
+        return False
+
+def time_get():
+    global sec,min
+    while True:
+        time_now = time.time()
+        time_now = time.ctime(time_now).split(' ')[3].split(':')[1:]
+        sec, min = int(time_now[1]), int(time_now[0])

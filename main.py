@@ -1,7 +1,9 @@
+import threading
+
 from map_info import movehero, findhero
 from data import *
 from func import *
-from Fight import fight_events, create_enemy, event_fight
+from Fight import fight_events, create_enemy, event_fight, time_get
 import os
 
 print('''Добро пожаловать в Лесной лабиринт
@@ -20,6 +22,9 @@ hero = create_hero(lists_heroes)
 #TODO Добавить событие загадок и сделать в дополнительном файле ( func )
 print(map)
 x, y = findhero(map)
+min, sec = 0,0
+thread = threading.Thread(target=time_get)
+thread.start()
 while True:
     wheremove = input('Введите движение: ').upper()
     map,x,y,event = movehero(map, x, y, wheremove)
