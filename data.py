@@ -62,8 +62,8 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'damage': 40,
                  'armor': 100,
                  'dodge': 0.1,
-                 'critical_damage': 0,
-                 'chance_critical_damage': 0,
+                 'critical_damage': 0.5,
+                 'chance_critical_damage': 0.1,
                  'skill1': {'name': 'Магия огня',
                             '1hit': None,
                             'damage': None,
@@ -186,7 +186,7 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                              'health': None,
                              'armor': None,
                              'plus_damage': None,
-                             'skill_colldown': None,
+                             'skill_colldown': 3,
                              'plus_dodge': None},
                   'skill2': {'name': 'Звуковой удар',
                              '1hit': None,
@@ -206,7 +206,7 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                              'health': None,
                              'armor': None,
                              'plus_damage': None,
-                             'skill_colldown': 6,
+                             'skill_colldown': 5,
                              'plus_dodge': None}
                   },
                 {'name':'Осколок леса', #Тайминговый босс
@@ -215,7 +215,37 @@ lists_enemy = [[{'name':'Волчья стая', # Обычные атаки
                  'armor': 0,
                  'dodge': 0,
                  'critical_damage': 0,
-                 'chance_critical_damage': 0
+                 'chance_critical_damage': 0,
+                  'skill1': {'name': None,
+                             '1hit': None,
+                             'damage': None,
+                             'ignore': None,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': None,
+                             'skill_colldown': None,
+                             'plus_dodge': None},
+                  'skill2': {'name': None,
+                             '1hit': None,
+                             'damage': None,
+                             'ignore': None,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': None,
+                             'skill_colldown': None,
+                             'plus_dodge': None},
+                  'skill3': {'name': None,
+                             '1hit': None,
+                             'damage': None,
+                             'ignore': None,
+                             'crit_damage': None,
+                             'health': None,
+                             'armor': None,
+                             'plus_damage': None,
+                             'skill_colldown': None,
+                             'plus_dodge': None},
                  }]]
 
 # Список с героями и их характеристиками
@@ -227,7 +257,7 @@ lists_heroes = [{'name':'Маг',
                  'critical_damage': 3,
                  'chance_critical_damage': 0.1,
                  'skill1': {'name': 'Превратить врага в безобидную овечку',
-                            '1hit': True,
+                            '1hit': False,
                             'damage': None,
                             'ignore': False,
                             'crit_damage': None,
@@ -516,7 +546,7 @@ list_of_artefacts = [[{'name': 'Родниковая вода',
                        'no_miss': False,
                        'rearm': False},
 
-#TODO Если появится вампирские предметы - починить процент вампиризма в добавлении. ( Класс character )
+
                       {'name': 'Болотная пиявка',
                        'description': 'Магическая болотная пивка. Кто-то рассказывал, что она может передать часть своих свойств, но никогда не отцепится',
                        'short_desc': 'Даёт +10% вампиризма от атак',
@@ -617,11 +647,11 @@ map = '''
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║x║H║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║x║x║x║1║x║x║x║
+║x║x║x║x║꠴║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║x║x║x║1║x║x║x║
+║x║x║x║x║*║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
-║x║3║1║꠳║1║*║*║x║
+║x║3║1║꠳║۩║*║*║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣
 ║x║x║x║꠳║x║x║x║x║
 ╠═╬═╬═╬═╬═╬═╬═╬═╣

@@ -35,8 +35,11 @@ class Hero:
                     skill = self.skills[question]
                     if self.skill_colldown[question] == 0:
                         if skill['1hit'] == True:
-                            target.health -= target.health
-                            print('Враг падает замертво от этого удара!')
+                            if target.class_enemy != 'Осколок леса' and target.class_enemy != 'Хранитель лабиринта':
+                                target.health -= target.health
+                                print('Враг падает замертво от этого удара!')
+                            else:
+                                print(f'Враг слишком силен и Вы не можете убить его с одного удара')
                         if skill['damage'] != None:
                             if target.armor > 0:
                                 target.armor -= skill['damage']
@@ -58,8 +61,11 @@ class Hero:
                             self.plus_damage += skill['plus_damage']
                             print(f'Вы увеличили свой урон на {skill["plus_damage"]}')
                         if 'овечк' in skill['name']:
-                            target.kill_status = True
-                            target.health -= target.health
+                            if target.class_enemy != 'Осколок леса' and target.class_enemy != 'Хранитель лабиринта':
+                                target.kill_status = True
+                                target.health -= target.health
+                            else:
+                                print(f'Враг слишком силен и Вы не можете превратить его в животное')
                         if skill['ignore'] != False:
                             target.health = - skill['damage']
                             print(f'Вы нанесли врагу {skill["damage"]} чистого урона способностью {skill["name"]}')
@@ -249,12 +255,11 @@ class Hero:
             else:
                 target.health -= damage
                 print(f' {damage} урона нанесено по здоровью.')
-#TODO Дописать
+
 
     def add_item(self, item):
         items_inventory_name = [inventory_item['name'] for inventory_item in self.inventory]
         for item_inventory in self.inventory:
-
             if item['name'] == item_inventory['name']:
                 item_inventory['count'] += 1
             else:
@@ -269,8 +274,12 @@ class Enemy:
         self.critical_damage = enemy_data['critical_damage']
         self.chance_critical_damage = enemy_data['chance_critical_damage']
         self.kill_status = False
-        self.skill1 = enemy_data['skill1']
-        self.skill_colldown = 0
+        if 'Хранитель лабиринта' in enemy_data['name'] or 'Осколок леса' in enemy_data['name']:
+            self.skills = [enemy_data['skill1'],enemy_data['skill2'],enemy_data['skill3']]
+            self.skills_colldown = [0,0,0]
+        else:
+            self.skill1 = enemy_data['skill1']
+            self.skill_colldown = 0
 
 
     def attack(self, target):
@@ -326,3 +335,31 @@ class Enemy:
                 self.dodge += self.skill1['plus_damage']
                 print(f'{self.class_enemy} увеличил свою силу атаки на {self.skill1["plus_damage"]}')
             self.skill_colldown = self.skill1['skill_colldown']
+
+    def boss_use_skill(self, target,skill):
+        if self.skills_colldown[choice] == 0:
+            if skill['1hit'] == True:
+                target.health -= target.health
+                print('Враг убивает Вас с одного удара!')
+            if skill['damage'] != None:
+                if target.armor > 0:
+                    target.armor -= skill['damage']
+                    print(f'{self.class_enemy} нанес {skill["damage"]} урона по броне способностью {skill["name"]}')
+                else:
+                    target.health -= skill['damage']
+                    print(f'{self.class_enemy} нанес {skill["damage"]} урона по здоровью способностью {skill["name"]}')
+            if skill['crit_damage'] != None:
+                self.chance_critical_damage += skill['crit_damage']
+                print(f'{self.class_enemy} повысил свой шанс критического урона на {skill["crit_damage"] * 100} %')
+            if skill['health'] != None:
+                self.health += skill['health']
+                print(f'{self.class_enemy} восстановил себе {skill["health"]} пунктов здоровья')
+            if skill['armor'] != None:
+                self.armor += skill['armor']
+                print(f'{self.class_enemy} восстановил себе {skill["armor"]} пунктов брони')
+            if skill['plus_dodge'] != None:
+                self.dodge += skill['plus_dodge']
+                print(f'{self.class_enemy} увеличил своё уклонение на {skill["plus_dodge"]}')
+            if skill['plus_damage'] != None:
+                self.dodge += skill['plus_damage']
+                print(f'{self.class_enemy} увеличил свою силу атаки на {skill["plus_damage"]}')

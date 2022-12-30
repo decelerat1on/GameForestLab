@@ -4,7 +4,7 @@ import data
 import time
 
 
-fight_events = ['1','2','3','۩','꠳','꠴']
+fight_events = ['1','2','3','꠳','꠴']
 
 
 def whoseattack(hero):
@@ -106,7 +106,23 @@ def enemy_attack_or_skill(enemy, hero):
                 enemy.skill_colldown = 0
         else:
             enemy.attack(hero)
-def time_count():
+def boss_attack_or_skill(boss, hero):
+    use_skill = random.choice([0,1])
+    if use_skill == 0:
+        boss.attack(hero)
+    else:
+        minimum = min(boss.skills_colldown)
+        index = boss.skills_colldown.index(minimum)
+        if minimum == 0:
+            boss.boss_use_skill(hero,boss.skills[index])
+            boss.skills_colldown[index] = boss.skills[index]['skill_colldown']
+        else:
+            boss.attack(hero)
+            for colldown in boss.skills_colldown:
+                if colldown > 0:
+                    colldown -= 1
+
+
 
 def fight_with_boss(hero):
     boss = random.choice(data.lists_enemy[-1])
@@ -114,10 +130,19 @@ def fight_with_boss(hero):
     count = 1
     print(f'Перед вами финальный босс: {boss.class_enemy} {boss.health} ЗДР.')
     input('Нажмите Enter чтобы продолжить')
+    start_timer = time.time()
     os.system('cls')
-    if boss['name'] == 'Осколок леса':
-#Фиксировать время в минутах и секундах
+    if boss.class_enemy == 'Осколок леса':
         while boss.health > 0:
+            if start_timer + 60 > time.time():
+                os.system('cls')
+                print(f'Ваш враг: {boss.class_enemy} {boss.health} ЗДР.\nХод:{count}\nВремени на убийство босса осталось: {round(start_timer + 60 - time.time())} сек')
+                choise_action(hero, boss)
+
+            else:
+                hero.health -= hero.health
+                print(f'Вы проиграли. Босс закрыл лабиринт. Вам не хватило времени. ')
+                return False
 
 
     else:
@@ -127,7 +152,7 @@ def fight_with_boss(hero):
             choise_action(hero, boss)
             print('_' * 50)
             print(f'{boss.class_enemy} атакует {hero.name}')
-            enemy_attack_or_skill(boss, hero)
+            boss_attack_or_skill(boss,hero)
             input('Нажмите Enter чтобы завершить ход')
             count += 1
     if hero.health > 0:
@@ -135,14 +160,9 @@ def fight_with_boss(hero):
         print('Победил герой')
         hero.plus_damage = 0
         hero.no_miss = False
+        return True
     else:
         os.system('cls')
         print('Победил монстр')
         return False
 
-def time_get():
-    global sec,min
-    while True:
-        time_now = time.time()
-        time_now = time.ctime(time_now).split(' ')[3].split(':')[1:]
-        sec, min = int(time_now[1]), int(time_now[0])
